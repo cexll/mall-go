@@ -2,12 +2,9 @@ module grpc
 
 go 1.13
 
-
-
 require (
 	github.com/go-redis/redis/v8 v8.8.0
 	github.com/go-sql-driver/mysql v1.5.0
-	github.com/jinzhu/configor v1.2.0
 	github.com/mix-go/dotenv v1.1.15
 	github.com/mix-go/xcli v1.1.20
 	github.com/mix-go/xdi v1.1.16
