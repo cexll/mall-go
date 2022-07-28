@@ -1,0 +1,6 @@
+version: "3.7"
+services:
+  user-api:
+    build: ./user/api
+  user-grpc:
+    build: ./user/grpc
