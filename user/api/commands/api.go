@@ -3,18 +3,17 @@ package commands
 import (
 	"context"
 	"fmt"
+	"github.com/gin-gonic/gin"
+	"api/di"
+	"api/routes"
+	"github.com/mix-go/dotenv"
+	"github.com/mix-go/xcli/flag"
+	"github.com/mix-go/xcli/process"
 	"os"
 	"os/signal"
 	"strings"
 	"syscall"
 	"time"
-
-	di "github.com/cexll/mall-go/di"
-	routes "github.com/cexll/mall-go/routes"
-	"github.com/gin-gonic/gin"
-	"github.com/mix-go/dotenv"
-	"github.com/mix-go/xcli/flag"
-	"github.com/mix-go/xcli/process"
 )
 
 type APICommand struct {

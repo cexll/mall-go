@@ -2,8 +2,7 @@ package viper
 
 import (
 	"fmt"
-
-	config "github.com/cexll/mall-go/config"
+	"api/config"
 	"github.com/mix-go/xcli/argv"
 	"github.com/spf13/viper"
 )

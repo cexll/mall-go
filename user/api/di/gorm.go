@@ -14,7 +14,6 @@ func init() {
 			return gorm.Open(mysql.Open(dotenv.Getenv("DATABASE_DSN").String()))
 		},
 	}
-
 	if err := xdi.Provide(&obj); err != nil {
 		panic(err)
 	}

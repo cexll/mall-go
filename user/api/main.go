@@ -1,10 +1,10 @@
 package main
 
 import (
-	commands "github.com/cexll/mall-go/commands"
-	_ "github.com/cexll/mall-go/config/dotenv"
-	_ "github.com/cexll/mall-go/config/viper"
-	_ "github.com/cexll/mall-go/di"
+	"api/commands"
+	_ "api/config/viper"
+	_ "api/config/dotenv"
+	_ "api/di"
 	"github.com/mix-go/dotenv"
 	"github.com/mix-go/xcli"
 )

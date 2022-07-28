@@ -2,10 +2,9 @@ package commands
 
 import (
 	"fmt"
+	"api/di"
 	"runtime"
 	"strings"
-
-	"github.com/cexll/mall-go/di"
 )
 
 const logo = `             ___         
