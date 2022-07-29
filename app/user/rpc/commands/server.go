@@ -2,15 +2,15 @@ package commands
 
 import (
 	"github.com/mix-go/dotenv"
-	"grpc/di"
-	pb "grpc/protos"
-	"grpc/services"
 	"github.com/mix-go/xcli/flag"
 	"github.com/mix-go/xcli/process"
 	"google.golang.org/grpc"
 	"net"
 	"os"
 	"os/signal"
+	"rpc/di"
+	pb "rpc/protos"
+	"rpc/services"
 	"strings"
 	"syscall"
 )

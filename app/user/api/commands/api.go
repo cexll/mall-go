@@ -1,11 +1,11 @@
 package commands
 
 import (
+	"api/di"
+	"api/routes"
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"api/di"
-	"api/routes"
 	"github.com/mix-go/dotenv"
 	"github.com/mix-go/xcli/flag"
 	"github.com/mix-go/xcli/process"

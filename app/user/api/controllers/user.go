@@ -12,8 +12,8 @@ func (t *UserController) Add(c *gin.Context) {
 	// 执行数据库操作
 	// ...
 
-    c.JSON(http.StatusOK, gin.H{
-        "status":  http.StatusOK,
-        "message": "ok",
-    })
+	c.JSON(http.StatusOK, gin.H{
+		"status":  http.StatusOK,
+		"message": "ok",
+	})
 }

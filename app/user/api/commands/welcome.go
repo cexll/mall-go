@@ -1,8 +1,8 @@
 package commands
 
 import (
-	"fmt"
 	"api/di"
+	"fmt"
 	"runtime"
 	"strings"
 )

@@ -2,9 +2,9 @@ package viper
 
 import (
 	"fmt"
-	"api/config"
 	"github.com/mix-go/xcli/argv"
 	"github.com/spf13/viper"
+	"rpc/config"
 )
 
 func init() {

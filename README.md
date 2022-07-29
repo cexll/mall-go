@@ -54,6 +54,14 @@
 - [ ] 分期
 - [ ] ...
 
+# 目录介绍
+
+- app:  所有业务代码包含api、rpc以及mq（消息队列、延迟队列、定时任务）
+- common: 通用组件 error、middleware、interceptor、tool、ctxdata等
+- data: 产生的数据
+- deploy: 项目系列配置文件
+- doc: 项目系列文档
+
 # 网关
 apisix做外网关 网关前面是slb
 

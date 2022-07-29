@@ -1,9 +1,9 @@
 package routes
 
 import (
-	"github.com/gin-gonic/gin"
 	"api/controllers"
 	"api/middleware"
+	"github.com/gin-gonic/gin"
 )
 
 func Load(router *gin.Engine) {

@@ -1,8 +1,8 @@
 package viper
 
 import (
+	"api/config"
 	"fmt"
-	"grpc/config"
 	"github.com/mix-go/xcli/argv"
 	"github.com/spf13/viper"
 )

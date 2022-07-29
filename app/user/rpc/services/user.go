@@ -2,7 +2,7 @@ package services
 
 import (
 	"context"
-	pb "grpc/protos"
+	pb "rpc/protos"
 )
 
 type UserService struct {

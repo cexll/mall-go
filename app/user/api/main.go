@@ -1,11 +1,11 @@
 package main
 
 import (
+	"api/commands"
+	_ "api/config/dotenv"
+	_ "api/config/viper"
+	_ "api/di"
 	"github.com/mix-go/dotenv"
-	"grpc/commands"
-	_ "grpc/config/viper"
-	_ "grpc/config/dotenv"
-	_ "grpc/di"
 	"github.com/mix-go/xcli"
 )
 
