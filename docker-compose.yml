@@ -1,6 +1,27 @@
-version: "3.7"
+version: "3"
+
+######## 启动项目 #######
+
 services:
+  # 会员API
   user-api:
-    build: ./user/api
+    build: ./app/user/api
+    ports:
+      - "12001:8080/tcp"
+    networks:
+      - mall-net
+
+  # 会员RPC
   user-grpc:
-    build: ./user/grpc
+    build: ./app/user/rpc
+    ports:
+      - "12002:8080/tcp"
+    networks:
+      - mall-net
+
+networks:
+  mall-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
