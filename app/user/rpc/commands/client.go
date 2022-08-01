@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/mix-go/dotenv"
 	"google.golang.org/grpc"
-	pb "rpc/protos"
+	"mall-go/app/user/pb"
 	"time"
 )
 
@@ -23,12 +23,13 @@ func (t *GrpcClientCommand) Main() {
 		_ = conn.Close()
 	}()
 	cli := pb.NewUserClient(conn)
-	req := pb.AddRequest{
-		Name: "xiaoliu",
+	req := pb.GetUserRequest{
+		Id: 80,
 	}
-	resp, err := cli.Add(ctx, &req)
+	resp, err := cli.GetUser(ctx, &req)
 	if err != nil {
-		panic(err)
+		fmt.Println(err.Error())
+		return
 	}
-	fmt.Println(fmt.Sprintf("Add User: %d", resp.UserId))
+	fmt.Println(fmt.Sprintf("User: %s", resp.String()))
 }

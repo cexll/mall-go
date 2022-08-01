@@ -8,6 +8,7 @@
 - grpc
 - redis
 - mysql
+- mongodb
 - asynq(其他替代 go-queue)
 - es(其他替代 gofound, zinc)
 - prometheus

@@ -3,10 +3,10 @@ package main
 import (
 	"github.com/mix-go/dotenv"
 	"github.com/mix-go/xcli"
-	"rpc/commands"
-	_ "rpc/config/dotenv"
-	_ "rpc/config/viper"
-	_ "rpc/di"
+	"mall-go/app/user/rpc/commands"
+	_ "mall-go/app/user/rpc/config/dotenv"
+	_ "mall-go/app/user/rpc/config/viper"
+	_ "mall-go/common/di"
 )
 
 func main() {

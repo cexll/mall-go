@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/mix-go/xcli/argv"
 	"github.com/spf13/viper"
-	"rpc/config"
+	"mall-go/app/user/rpc/config"
 )
 
 func init() {

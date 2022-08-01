@@ -1,10 +1,10 @@
 package viper
 
 import (
-	"api/config"
 	"fmt"
 	"github.com/mix-go/xcli/argv"
 	"github.com/spf13/viper"
+	"mall-go/app/user/api/config"
 )
 
 func init() {

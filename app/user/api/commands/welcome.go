@@ -1,8 +1,8 @@
 package commands
 
 import (
-	"api/di"
 	"fmt"
+	"mall-go/common/di"
 	"runtime"
 	"strings"
 )

@@ -1,14 +1,14 @@
 package commands
 
 import (
-	"api/di"
-	"api/routes"
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/mix-go/dotenv"
 	"github.com/mix-go/xcli/flag"
 	"github.com/mix-go/xcli/process"
+	"mall-go/app/user/api/routes"
+	"mall-go/common/di"
 	"os"
 	"os/signal"
 	"strings"
