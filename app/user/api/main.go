@@ -1,12 +1,12 @@
 package main
 
 import (
-	"api/commands"
-	_ "api/config/dotenv"
-	_ "api/config/viper"
-	_ "api/di"
 	"github.com/mix-go/dotenv"
 	"github.com/mix-go/xcli"
+	"mall-go/app/user/api/commands"
+	_ "mall-go/app/user/api/config/dotenv"
+	_ "mall-go/app/user/api/config/viper"
+	_ "mall-go/common/di"
 )
 
 func main() {
