@@ -2,7 +2,6 @@ package model
 
 import (
 	"fmt"
-	"github.com/mix-go/xsql"
 	"mall-go/common/di"
 	"strings"
 	"time"
@@ -23,11 +22,11 @@ type MallUser struct {
 }
 
 // TableName 表名称
-func (*MallUser) TableName() string {
+func (MallUser) TableName() string {
 	return "mall_user"
 }
 
-func (m *MallUser) FindByWhere(column []string, where []string, args []any, opts []string) (MallUser, error) {
+func (m MallUser) FindByWhere(column []string, where []string, args []any, opts []string) (MallUser, error) {
 	db := di.Xsql()
 	var user MallUser
 	err := db.First(&user, fmt.Sprintf("SELECT %s FROM `%s` WHERE %s %s",
@@ -43,11 +42,9 @@ func (m *MallUser) FindByWhere(column []string, where []string, args []any, opts
 	return user, nil
 }
 
-func (m *MallUser) CreateOne(user MallUser) (int64, error) {
+func (m MallUser) CreateOne(user *MallUser) (int64, error) {
 	db := di.Xsql()
-	row, err := db.Insert(user, xsql.Options{
-		InsertKey: m.TableName(),
-	})
+	row, err := db.Insert(user)
 	if err != nil {
 		return 0, err
 	}

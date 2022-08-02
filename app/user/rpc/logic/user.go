@@ -2,7 +2,10 @@ package logic
 
 import (
 	"errors"
+	"mall-go/app/user/pb"
 	"mall-go/app/user/rpc/model"
+	"mall-go/common/hash"
+	"time"
 )
 
 type UserLogic struct {
@@ -30,6 +33,21 @@ func (l *UserLogic) Logout() {
 
 }
 
-func (l *UserLogic) Register() {
+func (l *UserLogic) Register(in *pb.RegisterRequest) (int64, error) {
+	if in.Password != "" {
+		hashPass, err := hash.PasswordHash(in.Password)
+		if err != nil {
+			return 0, err
+		}
+		in.Password = hashPass
+	}
 
+	return l.model.CreateOne(&model.MallUser{
+		Nickname:  in.Nickname,
+		Password:  in.Password,
+		Mobile:    in.Mobile,
+		Status:    1,
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
+	})
 }

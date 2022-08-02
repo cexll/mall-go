@@ -12,7 +12,7 @@ type UserService struct {
 	logic logic.UserLogic
 }
 
-func (t *UserService) GetUser(ctx context.Context, in *pb.GetUserRequest) (*pb.GetUserResponse, error) {
+func (t UserService) GetUser(ctx context.Context, in *pb.GetUserRequest) (*pb.GetUserResponse, error) {
 	if in.Id == 0 {
 		return &pb.GetUserResponse{}, errors.New("id不能为空")
 	}
@@ -33,22 +33,24 @@ func (t *UserService) GetUser(ctx context.Context, in *pb.GetUserRequest) (*pb.G
 	}, nil
 }
 
-func (t *UserService) SetUser(ctx context.Context, in *pb.SetUserRequest) (*pb.SetUserResponse, error) {
+func (t UserService) SetUser(ctx context.Context, in *pb.SetUserRequest) (*pb.SetUserResponse, error) {
 	//TODO implement me
 	panic("implement me")
 }
 
-func (t *UserService) Logout(ctx context.Context, in *pb.LogOutRequest) (*pb.LogOutResponse, error) {
+func (t UserService) Logout(ctx context.Context, in *pb.LogOutRequest) (*pb.LogOutResponse, error) {
 	//TODO implement me
 	panic("implement me")
 }
 
-func (t *UserService) Register(ctx context.Context, in *pb.RegisterRequest) (*pb.RegisterResponse, error) {
-	// 执行数据库操作
-	// ...
+func (t UserService) Register(ctx context.Context, in *pb.RegisterRequest) (*pb.RegisterResponse, error) {
+	id, err := t.logic.Register(in)
+	if err != nil {
+		return nil, err
+	}
 
 	resp := pb.RegisterResponse{
-		Id: 100,
+		Id: id,
 	}
 	return &resp, nil
 }
