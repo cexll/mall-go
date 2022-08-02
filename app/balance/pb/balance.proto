@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package mall.rpc.balance;
+
+option go_package = "/;pb";
+option php_metadata_namespace = "Mall/Rpc/Balance/GPBMetadata";
+service Balance {
+  // 获取余额
+  rpc GetBalance(GetBalanceRequest) returns(GetBalanceResponse);
+  // 增加余额
+  rpc SubBalance(SubBalanceRequest) returns(SubBalanceResponse);
+  // 减少余额
+  rpc ReduceBalance(ReduceBalanceRequest) returns(ReduceBalanceResponse);
+}
+
+message GetBalanceRequest {
+  int64 user_id = 1; // 用户id 商户id
+  int32 type = 2; // 1 用户 2 商户
+}
+
+message GetBalanceResponse {
+  int64 id = 1;
+  int64 user_id = 2;
+  int32 type = 3;
+  float available = 4;
+  float freeze = 5;
+}
+
+message SubBalanceRequest {
+  int64 id = 1;
+  float amount = 2;
+  string desc = 3;
+}
+
+message SubBalanceResponse {
+  bool status = 1;
+}
+
+message ReduceBalanceRequest {
+  int64 id = 1;
+  float amount = 2;
+  string desc = 3;
+}
+
+message ReduceBalanceResponse {
+  bool status = 1;
+}
