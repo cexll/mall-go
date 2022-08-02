@@ -44,13 +44,13 @@ func (t *UserController) Register(c *gin.Context) {
 	err := c.BindJSON(&req)
 	if err != nil {
 		di.Logrus().Error(err)
-		c.JSON(200, t.resp.Fail("参数校验异常"))
+		c.JSON(200, t.resp.Fail("参数异常"))
 		return
 	}
 	err = validate.Struct(req)
 	if err != nil {
 		di.Logrus().Error(err)
-		c.JSON(200, t.resp.Fail("参数校验异常"))
+		c.JSON(200, t.resp.Fail("参数异常"))
 		return
 	}
 	rpcReq := pb.RegisterRequest{
