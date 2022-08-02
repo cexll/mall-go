@@ -6,11 +6,11 @@ option go_package = "/;pb";
 option php_metadata_namespace = "Mall/Rpc/Balance/GPBMetadata";
 service Balance {
   // 获取余额
-  rpc GetBalance(GetBalanceRequest) returns(GetBalanceResponse);
+  rpc GetBalance(GetBalanceRequest) returns(GetBalanceResponse) {}
   // 增加余额
-  rpc SubBalance(SubBalanceRequest) returns(SubBalanceResponse);
+  rpc SubBalance(SubBalanceRequest) returns(SubBalanceResponse) {}
   // 减少余额
-  rpc ReduceBalance(ReduceBalanceRequest) returns(ReduceBalanceResponse);
+  rpc ReduceBalance(ReduceBalanceRequest) returns(ReduceBalanceResponse) {}
 }
 
 message GetBalanceRequest {
