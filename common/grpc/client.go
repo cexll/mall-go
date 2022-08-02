@@ -43,7 +43,7 @@ type (
 func NewClient(target string, opts ...ClientOption) (Client, error) {
 	var cli client
 
-	svcCfg := fmt.Sprintf(`{"loadBalancingPolicy":"%s"}`, "mall-go")
+	svcCfg := fmt.Sprintf(`{"loadBalancingPolicy":"%s"}`, "pick_first")
 	balancerOpt := WithDialOption(grpc.WithDefaultServiceConfig(svcCfg))
 	opts = append([]ClientOption{balancerOpt}, opts...)
 	if err := cli.dial(target, opts...); err != nil {
