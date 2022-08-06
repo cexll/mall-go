@@ -18,6 +18,10 @@ func Load(router *gin.Engine) {
 	router.POST("/user/getUser", func(ctx *gin.Context) {
 		user.GetUser(ctx)
 	})
+	// 登陆
+	router.POST("/user/login", func (ctx *gin.Context)  {
+		user.Login(ctx)
+	})
 	v1 := router.Group("/user", middleware.AuthMiddleware())
 	{
 		// 编辑用户信息

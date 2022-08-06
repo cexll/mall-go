@@ -64,39 +64,7 @@ func TestMallUser_UpdateByWhere(t *testing.T) {
 		return
 	}
 	fmt.Println(rows)
-	// 一系列判断
-
-	//user.Nickname = "张大仙"
-	//update := MallUser{
-	//	Nickname: "张大仙",
-	//	Mobile:   "8008208820",
-	//	Status:   1,
-	//}
-
-	//value := reflect.ValueOf(user)
-	//key := reflect.TypeOf(user)
-	//count := value.NumField()
-	//fmt.Println("value is count ", count)
-	//var set []string
-	//for i := 0; i < count; i++ {
-	//	f := value.Field(i)
-	//	switch f.Kind() {
-	//	case reflect.String:
-	//		if f.String() != "" {
-	//			set = append(set, fmt.Sprintf("%s = %s", key.Field(i).Name, f.String()))
-	//		}
-	//	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
-	//		if f.Int() != 0 {
-	//			set = append(set, fmt.Sprintf("%s = %d", key.Field(i).Name, f.Int()))
-	//		}
-	//	case reflect.Interface:
-	//		if f.Interface() != nil {
-	//			set = append(set, fmt.Sprintf("%s = %d", key.Field(i).Name, f.Interface()))
-	//		}
-	//	}
-	//}
-
-	//fmt.Println(set)
+	// 2022/08/05 17:40:41 SQL Time: 1.5781ms  Sql: UPDATE `mall_user` SET nickname = ?, mobile = ? WHERE id = ?;  Args: [张大仙 1999239999   9 %!s(int=1)]
 }
 
 func TestMallUser_DeleteByWhere(t *testing.T) {

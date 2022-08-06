@@ -3,9 +3,9 @@ package main
 import (
 	"github.com/mix-go/dotenv"
 	"github.com/mix-go/xcli"
-	"mall-go/app/user/cmd/api/commands"
-	_ "mall-go/app/user/cmd/api/config/dotenv"
-	_ "mall-go/app/user/cmd/api/config/viper"
+	"mall-go/app/balance/cmd/api/commands"
+	_ "mall-go/app/balance/cmd/api/config/dotenv"
+	_ "mall-go/app/balance/cmd/api/config/viper"
 	_ "mall-go/common/di"
 )
 

@@ -12,6 +12,8 @@ service User {
     rpc SetUser(SetUserRequest) returns(SetUserResponse) {}
     // 注销
     rpc Logout(LogOutRequest) returns(LogOutResponse) {}
+    // 登陆
+    rpc Login(LoginRequest) returns(LoginResponse) {}
 }
 
 // 注册用户请求结构
@@ -70,4 +72,18 @@ message LogOutRequest {
 // 注销用户返回结构
 message LogOutResponse {
     bool status = 1;
+}
+
+// 登陆请求结构
+message LoginRequest {
+    string mobile = 1;
+    string password = 2;
+}
+
+// 登陆返回结构
+message LoginResponse {
+    int64 id = 1;
+    string nickname = 2;
+    string avatar_url = 3;
+    string mobile = 4;
 }

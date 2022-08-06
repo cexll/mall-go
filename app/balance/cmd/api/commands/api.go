@@ -7,7 +7,7 @@ import (
 	"github.com/mix-go/dotenv"
 	"github.com/mix-go/xcli/flag"
 	"github.com/mix-go/xcli/process"
-	"mall-go/app/user/cmd/api/routes"
+	"mall-go/app/balance/cmd/api/routes"
 	"mall-go/common/di"
 	"os"
 	"os/signal"
