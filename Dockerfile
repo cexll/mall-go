@@ -23,7 +23,7 @@ FROM alpine
 RUN apk update --no-cache && apk add --no-cache ca-certificates
 COPY --from=builder /usr/share/zoneinfo/Asia/Shanghai /usr/share/zoneinfo/Asia/Shanghai
 ENV TZ Asia/Shanghai
-
+ENV APP_DEBUG false
 WORKDIR /app
 
 ARG path=/app/user/cmd/api

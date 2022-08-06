@@ -10,7 +10,7 @@ services:
       args:
         path: "/app/user/cmd/api"
     ports:
-      - "10001:10001/tcp"
+      - "10001:8080/tcp"
     command: ./bin/main api
     networks:
       - mall-net
@@ -22,7 +22,29 @@ services:
       args:
         path: "/app/user/cmd/rpc"
     ports:
-      - "10002:10002/tcp"
+      - "10002:8080/tcp"
+    command: ./bin/main grpc:server
+    networks:
+      - mall-net
+  # 余额API
+  balance-api:
+    build:
+      context: .
+      args:
+        path: "/app/balance/cmd/api"
+    ports:
+      - "10011:8080/tcp"
+    command: ./bin/main api
+    networks:
+      - mall-net
+  # 余额RPC
+  balance-grpc:
+    build:
+      context: .
+      args:
+        path: "/app/balance/cmd/rpc"
+    ports:
+      - "10012:8080/tcp"
     command: ./bin/main grpc:server
     networks:
       - mall-net
