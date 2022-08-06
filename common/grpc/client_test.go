@@ -3,8 +3,8 @@ package grpc
 import (
 	"context"
 	"fmt"
-	bpb "mall-go/app/balance/pb"
-	"mall-go/app/user/pb"
+	bpb "mall-go/app/balance/cmd/pb"
+	"mall-go/app/user/cmd/pb"
 	"testing"
 )
 

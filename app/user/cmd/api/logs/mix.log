@@ -22,3 +22,7 @@
 2022-08-02 18:11:01.502	INFO	di/zap.go:67	POST|/user/register|200|127.0.0.1
 
 2022-08-02 18:15:55.080	INFO	commands/api.go:58	Server shutdown
+2022-08-06 14:46:46.434	INFO	commands/api.go:67	Server start at :10001
+2022-08-06 14:46:51.300	INFO	commands/api.go:58	Server shutdown
+2022-08-06 14:47:48.761	INFO	commands/api.go:67	Server start at :10001
+2022-08-06 14:48:11.138	INFO	commands/api.go:58	Server shutdown
