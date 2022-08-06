@@ -2,9 +2,11 @@ package jwtx
 
 import (
 	"fmt"
+	"strconv"
+	"time"
+
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/mix-go/dotenv"
-	"time"
 )
 
 func GenerateJwt(uid int64) (string, error) {
@@ -14,7 +16,7 @@ func GenerateJwt(uid int64) (string, error) {
 		"iat": now,                                                   // 签发时间
 		"exp": now + int64(7200),                                     // 过期时间
 		"nbf": time.Date(2015, 10, 10, 12, 0, 0, 0, time.UTC).Unix(), // 什么时间之前不可用
-		"uid": uid,
+		"uid": strconv.FormatInt(uid, 10),
 	})
 	tokenString, err := token.SignedString([]byte(dotenv.Getenv("HMAC_SECRET").String()))
 	if err != nil {

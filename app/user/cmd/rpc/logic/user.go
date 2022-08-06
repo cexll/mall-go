@@ -92,7 +92,8 @@ func (l *UserLogic) Register(in *pb.RegisterRequest) (int64, error) {
 	})
 }
 
-func (l *UserLogic) Login(in *pb.LoginRequest) (user *model.MallUser, err error) {
+func (l *UserLogic) Login(in *pb.LoginRequest) (model.MallUser, error) {
+	var user model.MallUser
 	result, err := l.model.FindByWhere([]string{
 		"id", "nickname", "mobile", "password", "avatar_url",
 	}, []string{
@@ -100,18 +101,19 @@ func (l *UserLogic) Login(in *pb.LoginRequest) (user *model.MallUser, err error)
 	}, []any{
 		in.Mobile,
 	}, []string{})
+
 	if err != nil {
-		return nil, err
+		return user, err
 	}
 	if result.ID == 0 {
-		return nil, err
+		return user, errors.New("用户不存在")
 	}
 	if result.IsDelete == 1 {
-		return nil, errors.New("用户已经注销")
+		return user, errors.New("用户已经注销")
 	}
-	if !hash.PasswordVerify(in.Password, user.Password) {
-		return nil, err
+	if hash.PasswordVerify(in.Password, user.Password) {
+		return user, errors.New("密码错误")
 	}
 
-	return &result, nil
+	return result, nil
 }

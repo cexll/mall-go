@@ -40,9 +40,9 @@ func AuthMiddleware() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
-
 		// 保存信息
 		if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
+			c.Set("userId", claims["uid"])
 			c.Set("payload", claims)
 		}
 

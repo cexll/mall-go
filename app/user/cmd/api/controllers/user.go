@@ -137,10 +137,14 @@ func (t UserController) SetUser(c *gin.Context) {
 		c.JSON(http.StatusOK, t.resp.Fail("获取用户ID失败"))
 		return
 	}
-	userId := value.(int64)
+	userId, err := strconv.ParseInt(value.(string), 10, 64)
+	if err != nil {
+		c.JSON(http.StatusOK, t.resp.Fail("转换用户ID异常"))
+		return
+	}
 	validate = validator.New()
 	var req SetUserValidate
-	err := c.BindJSON(&req)
+	err = c.BindJSON(&req)
 	if err != nil {
 		di.Logrus().Error(err)
 		c.JSON(http.StatusOK, t.resp.Fail("参数异常"))

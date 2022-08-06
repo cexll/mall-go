@@ -1,6 +1,6 @@
 package grpc
 
 var (
-	UserGRPCAddr    = ":10002"
-	BalanceGRPCAddr = ":10012"
+	UserGRPCAddr    = "user-rpc:8080"
+	BalanceGRPCAddr = "balance-rpc:8080"
 )
