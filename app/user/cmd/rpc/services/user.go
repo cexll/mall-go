@@ -14,11 +14,11 @@ type UserService struct {
 
 func (t UserService) GetUser(ctx context.Context, in *pb.GetUserRequest) (*pb.GetUserResponse, error) {
 	if in.Id == 0 {
-		return &pb.GetUserResponse{}, errors.New("id不能为空")
+		return nil, errors.New("id不能为空")
 	}
 	user, err := t.logic.GetUser(in.Id)
 	if err != nil {
-		return &pb.GetUserResponse{}, err
+		return nil, err
 	}
 	return &pb.GetUserResponse{
 		Id:        user.ID,
@@ -34,13 +34,25 @@ func (t UserService) GetUser(ctx context.Context, in *pb.GetUserRequest) (*pb.Ge
 }
 
 func (t UserService) SetUser(ctx context.Context, in *pb.SetUserRequest) (*pb.SetUserResponse, error) {
-	//TODO implement me
-	panic("implement me")
+	bool, err := t.logic.SetUser(in)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.SetUserResponse{
+		Status: bool,
+	}, nil
 }
 
 func (t UserService) Logout(ctx context.Context, in *pb.LogOutRequest) (*pb.LogOutResponse, error) {
-	//TODO implement me
-	panic("implement me")
+	bool, err := t.logic.Logout(in.Id)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.LogOutResponse{
+		Status: bool,
+	}, nil
 }
 
 func (t UserService) Register(ctx context.Context, in *pb.RegisterRequest) (*pb.RegisterResponse, error) {
@@ -49,8 +61,20 @@ func (t UserService) Register(ctx context.Context, in *pb.RegisterRequest) (*pb.
 		return nil, err
 	}
 
-	resp := pb.RegisterResponse{
+	return &pb.RegisterResponse{
 		Id: id,
+	}, nil
+}
+
+func (t UserService) Login(ctx context.Context, in *pb.LoginRequest) (*pb.LoginResponse, error) {
+	user, err := t.logic.Login(in)
+	if err != nil {
+		return nil, err
 	}
-	return &resp, nil
+	return &pb.LoginResponse{
+		Id:        user.ID,
+		Nickname:  user.Nickname,
+		AvatarUrl: user.AvatarUrl,
+		Mobile:    user.Mobile,
+	}, nil
 }
