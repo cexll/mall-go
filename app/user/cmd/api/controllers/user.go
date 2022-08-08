@@ -38,7 +38,7 @@ func (t UserController) Register(c *gin.Context) {
 		Password: req.Password,
 	})
 	if err != nil {
-		c.JSON(http.StatusOK, t.resp.Fail(err.Error()))
+		c.JSON(http.StatusOK, t.resp.Error(err))
 		return
 	}
 
@@ -66,7 +66,7 @@ func (t UserController) Login(c *gin.Context) {
 	})
 
 	if err != nil {
-		c.JSON(http.StatusOK, t.resp.Fail(err.Error()))
+		c.JSON(http.StatusOK, t.resp.Error(err))
 		return
 	}
 
@@ -94,7 +94,7 @@ func (t UserController) GetUser(c *gin.Context) {
 		Id: Id,
 	})
 	if err != nil {
-		c.JSON(http.StatusOK, t.resp.Fail(err.Error()))
+		c.JSON(http.StatusOK, t.resp.Error(err))
 		return
 	}
 
@@ -132,7 +132,7 @@ func (t UserController) SetUser(c *gin.Context) {
 		Status:    req.Status,
 	})
 	if err != nil {
-		c.JSON(http.StatusOK, t.resp.Fail(err.Error()))
+		c.JSON(http.StatusOK, t.resp.Error(err))
 		return
 	}
 
@@ -149,7 +149,7 @@ func (t UserController) Logout(c *gin.Context) {
 		Id: userId,
 	})
 	if err != nil {
-		c.JSON(http.StatusOK, t.resp.Fail(err.Error()))
+		c.JSON(http.StatusOK, t.resp.Error(err))
 		return
 	}
 

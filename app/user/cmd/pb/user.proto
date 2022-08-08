@@ -87,3 +87,8 @@ message LoginResponse {
     string avatar_url = 3;
     string mobile = 4;
 }
+
+message Error {
+    int32 code = 1;
+    string message = 2;
+}
