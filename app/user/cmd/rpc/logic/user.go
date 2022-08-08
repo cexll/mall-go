@@ -49,6 +49,13 @@ func (l *UserLogic) SetUser(in *pb.SetUserRequest) (bool, error) {
 	if in.Signature != "" {
 		user.Signature = in.Signature
 	}
+	if in.Password != "" {
+		hashPass, err := hash.PasswordHash(in.Password)
+		if err != nil {
+			return false, err
+		}
+		user.Password = hashPass
+	}
 	user.UpdatedAt = time.Now()
 	rows, err := l.model.UpdateByWhere(&user, []string{
 		"id = ?",

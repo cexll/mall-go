@@ -107,6 +107,7 @@ type SetUserValidate struct {
 	Mobile    string `json:"mobile" validate:"required"`
 	Signature string `json:"signature" validate:"required"`
 	Status    int64  `json:"status" validate:"required"`
+	Password  string `json:"password" validate:"max=16"`
 }
 
 func (t UserController) SetUser(c *gin.Context) {
@@ -130,6 +131,7 @@ func (t UserController) SetUser(c *gin.Context) {
 		Mobile:    req.Mobile,
 		Signature: req.Signature,
 		Status:    req.Status,
+		Password:  req.Password,
 	})
 	if err != nil {
 		c.JSON(http.StatusOK, t.resp.Error(err))
