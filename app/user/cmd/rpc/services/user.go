@@ -15,7 +15,7 @@ type UserService struct {
 
 func (t UserService) GetUser(ctx context.Context, in *pb.GetUserRequest) (*pb.GetUserResponse, error) {
 	if in.Id == 0 {
-		return nil, errors.New("id不能为空")
+		return nil, grpc.GrpcError(errors.New("id不能为空"), 100)
 	}
 	user, err := t.logic.GetUser(in.Id)
 	if err != nil {
