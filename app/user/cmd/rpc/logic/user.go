@@ -17,12 +17,14 @@ func (l *UserLogic) GetUser(id int64) (model.MallUser, error) {
 		"id", "nickname", "avatar_url", "mobile", "signature", "status", "is_delete", "created_at", "updated_at",
 	}, []string{
 		"id = ?",
-		"is_delete = 0",
 	}, []any{
 		id,
 	}, []string{})
 	if err != nil {
-		return user, errors.New("query error")
+		return user, errors.New("查询出错")
+	}
+	if user.IsDelete == 1 {
+		return user, errors.New("用户已注销")
 	}
 	return user, nil
 }

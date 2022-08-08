@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v4"
-	"github.com/mix-go/dotenv"
+	"mall-go/common/config"
 	"net/http"
 	"strings"
 )
@@ -30,7 +30,7 @@ func AuthMiddleware() gin.HandlerFunc {
 			}
 
 			// hmacSampleSecret is a []byte containing your secret, e.g. []byte("my_secret_key")
-			return []byte(dotenv.Getenv("HMAC_SECRET").String()), nil
+			return []byte(config.Conf.JWT.HmacSecret), nil
 		})
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{

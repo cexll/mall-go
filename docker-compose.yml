@@ -13,7 +13,7 @@ services:
       - "10001:8080/tcp"
     expose:
       - 8080
-    command: ./bin/main api
+    command: ./bin/main api -f etc/config.yaml
     networks:
       - mall-net
 
@@ -27,7 +27,7 @@ services:
       - "10002:8080/tcp"
     expose:
       - 8080
-    command: ./bin/main grpc:server
+    command: ./bin/main grpc:server -f etc/config.yaml
     networks:
       - mall-net
   # 余额API
@@ -40,7 +40,7 @@ services:
       - "10011:8080/tcp"
     expose:
       - 8080
-    command: ./bin/main api
+    command: ./bin/main api -f etc/config.yaml
     networks:
       - mall-net
   # 余额RPC
@@ -53,7 +53,7 @@ services:
       - "10012:8080/tcp"
     expose:
       - 8080
-    command: ./bin/main grpc:server
+    command: ./bin/main grpc:server -f etc/config.yaml
     networks:
       - mall-net
 

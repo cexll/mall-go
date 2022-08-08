@@ -1,17 +1,15 @@
 package main
 
 import (
-	"github.com/mix-go/dotenv"
 	"github.com/mix-go/xcli"
 	"mall-go/app/balance/cmd/rpc/commands"
-	_ "mall-go/app/balance/cmd/rpc/config/dotenv"
-	_ "mall-go/app/balance/cmd/rpc/config/viper"
+	"mall-go/common/config"
 	_ "mall-go/common/di"
 )
 
 func main() {
 	xcli.SetName("app").
 		SetVersion("0.0.0-alpha").
-		SetDebug(dotenv.Getenv("APP_DEBUG").Bool(false))
+		SetDebug(config.Conf.APPDEBUG)
 	xcli.AddCommand(commands.Commands...).Run()
 }

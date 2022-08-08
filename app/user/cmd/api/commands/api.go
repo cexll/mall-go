@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/mix-go/dotenv"
 	"github.com/mix-go/xcli/flag"
 	"github.com/mix-go/xcli/process"
 	"mall-go/app/user/cmd/api/routes"
+	"mall-go/common/config"
 	"mall-go/common/di"
 	"os"
 	"os/signal"
@@ -26,8 +26,8 @@ func (t *APICommand) Main() {
 
 	logger := di.Zap()
 	server := di.Server()
-	addr := dotenv.Getenv("GIN_ADDR").String(":8080")
-	mode := dotenv.Getenv("GIN_MODE").String(gin.ReleaseMode)
+	addr := config.Conf.API.GinAddr
+	mode := config.Conf.API.GinMode
 
 	// server
 	gin.SetMode(mode)
@@ -47,7 +47,8 @@ func (t *APICommand) Main() {
 		router.Use(handlerFunc)
 	}
 	routes.Load(router)
-	server.Addr = flag.Match("a", "addr").String(addr)
+
+	server.Addr = addr
 	server.Handler = router
 
 	// signal

@@ -13,6 +13,10 @@ var Commands = []*xcli.Command{
 				Names: []string{"d", "daemon"},
 				Usage: "Run in the background",
 			},
+			{
+				Names: []string{"f", "configure"},
+				Usage: "\tServer running Configure",
+			},
 		},
 		RunI: &GrpcServerCommand{},
 	},

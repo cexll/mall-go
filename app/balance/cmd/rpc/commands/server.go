@@ -1,12 +1,12 @@
 package commands
 
 import (
-	"github.com/mix-go/dotenv"
 	"github.com/mix-go/xcli/flag"
 	"github.com/mix-go/xcli/process"
 	"google.golang.org/grpc"
 	"mall-go/app/balance/cmd/pb"
 	"mall-go/app/balance/cmd/rpc/services"
+	"mall-go/common/config"
 	"mall-go/common/di"
 	"net"
 	"os"
@@ -25,7 +25,7 @@ func (t *GrpcServerCommand) Main() {
 		process.Daemon()
 	}
 
-	addr := dotenv.Getenv("RPC_ADDR").String(":8080")
+	addr := config.Conf.RPC.GRPCAddr
 	logger := di.Zap()
 
 	// listen

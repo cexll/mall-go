@@ -2,8 +2,8 @@ package di
 
 import (
 	"github.com/go-redis/redis"
-	"github.com/mix-go/dotenv"
 	"github.com/mix-go/xdi"
+	"mall-go/common/config"
 	"time"
 )
 
@@ -12,10 +12,10 @@ func init() {
 		Name: "goredis",
 		New: func() (i interface{}, e error) {
 			opt := redis.Options{
-				Addr:        dotenv.Getenv("REDIS_ADDR").String(),
-				Password:    dotenv.Getenv("REDIS_PASSWORD").String(),
-				DB:          int(dotenv.Getenv("REDIS_DATABASE").Int64()),
-				DialTimeout: time.Duration(dotenv.Getenv("REDIS_DIAL_TIMEOUT").Int64(10)) * time.Second,
+				Addr:        config.Conf.REDIS.RedisAddr,
+				Password:    config.Conf.REDIS.RedisPassword,
+				DB:          int(config.Conf.REDIS.RedisDatabase),
+				DialTimeout: time.Duration(config.Conf.REDIS.RedisTimeOut) * time.Second,
 			}
 			return redis.NewClient(&opt), nil
 		},

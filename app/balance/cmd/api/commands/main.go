@@ -17,6 +17,10 @@ var Commands = []*xcli.Command{
 				Names: []string{"d", "daemon"},
 				Usage: "\tRun in the background",
 			},
+			{
+				Names: []string{"f", "configure"},
+				Usage: "\tServer running Configure",
+			},
 		},
 		RunI: &APICommand{},
 	},

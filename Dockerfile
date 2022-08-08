@@ -30,7 +30,6 @@ ARG path=/app/user/cmd/api
 
 COPY --from=builder /build/main /app/bin/main
 
-COPY ${path}/conf /app/conf
-COPY ${path}/.env /app/.env
+COPY ${path}/etc /app/etc
 
-CMD ["./bin/main", "api"]
+CMD ["./bin/main", "api", "-f", "etc/config.yaml"]

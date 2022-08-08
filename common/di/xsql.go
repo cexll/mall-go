@@ -3,17 +3,17 @@ package di
 import (
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/mix-go/dotenv"
 	"github.com/mix-go/xdi"
 	"github.com/mix-go/xsql"
 	"log"
+	"mall-go/common/config"
 )
 
 func init() {
 	obj := xdi.Object{
 		Name: "xsql",
 		New: func() (i interface{}, e error) {
-			db, err := sql.Open("mysql", dotenv.Getenv("DATABASE_DSN").String())
+			db, err := sql.Open("mysql", config.Conf.DB.DSN)
 			if err != nil {
 				return nil, err
 			}
