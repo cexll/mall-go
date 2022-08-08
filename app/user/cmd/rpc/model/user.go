@@ -26,6 +26,16 @@ func (MallUser) TableName() string {
 	return "mall_user"
 }
 
+func (m MallUser) FindById(id int64) (MallUser, error) {
+	db := di.Xsql()
+	var user MallUser
+	err := db.First(&user, fmt.Sprintf("SELECT * FROM %s WHERE `id` = ? LIMIT 1;", m.TableName()), id)
+	if err != nil {
+		return user, err
+	}
+	return user, nil
+}
+
 func (m MallUser) FindByWhere(column []string, where []string, args []any, opts []string) (MallUser, error) {
 	db := di.Xsql()
 	var user MallUser
@@ -77,20 +87,13 @@ func (m MallUser) GetManyByWhere(column []string, where []string, args []any, op
 	return user, nil
 }
 
-func (m MallUser) UpdateByWhere(where []string, whereArgs []any, update []string, updateArgs []any) (int64, error) {
+func (m MallUser) UpdateByWhere(user *MallUser, where []string, args []any) (int64, error) {
 	db := di.Xsql()
-	var args []any
-	args = append(args, updateArgs...)
-	args = append(args, whereArgs...)
-	result, err := db.Exec(fmt.Sprintf("UPDATE `%s` SET %s WHERE %s;",
-		m.TableName(),
-		strings.Join(update, ", "),
-		strings.Join(where, " AND "),
-	), args...)
+	rows, err := db.Update(user, strings.Join(where, ", "), args...)
 	if err != nil {
 		return 0, err
 	}
-	return result.RowsAffected()
+	return rows.RowsAffected()
 }
 
 func (m MallUser) DeleteByWhere(where []string, args []any) (int64, error) {

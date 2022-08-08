@@ -18,7 +18,9 @@ func (l *UserLogic) GetUser(id int64) (model.MallUser, error) {
 	}, []string{
 		"id = ?",
 		"is_delete = 0",
-	}, []any{id}, []string{})
+	}, []any{
+		id,
+	}, []string{})
 	if err != nil {
 		return user, errors.New("query error")
 	}
@@ -26,51 +28,61 @@ func (l *UserLogic) GetUser(id int64) (model.MallUser, error) {
 }
 
 func (l *UserLogic) SetUser(in *pb.SetUserRequest) (bool, error) {
-	rows, err := l.model.UpdateByWhere([]string{
+	user, err := l.model.FindById(in.Id)
+	if err != nil {
+		return false, err
+	}
+	if in.Nickname != "" {
+		user.Nickname = in.Nickname
+	}
+	if in.AvatarUrl != "" {
+		user.AvatarUrl = in.AvatarUrl
+	}
+	if in.Status != 0 {
+		user.Status = int8(in.Status)
+	}
+	if in.Mobile != "" {
+		user.Mobile = in.Mobile
+	}
+	if in.Signature != "" {
+		user.Signature = in.Signature
+	}
+	user.UpdatedAt = time.Now()
+	rows, err := l.model.UpdateByWhere(&user, []string{
 		"id = ?",
 	}, []any{
 		in.Id,
-	}, []string{
-		"nickname = ?",
-		"avatar_url	= ?",
-		"mobile = ?",
-		"signature = ?",
-		"status = ?",
-		"updated_at = ?",
-	}, []any{
-		in.Nickname,
-		in.AvatarUrl,
-		in.Mobile,
-		in.Signature,
-		in.Status,
-		time.Now(),
 	})
 	if err != nil {
-		return false, err
+		return false, nil
 	}
-	if rows != 0 {
+	if rows == 0 {
 		return true, nil
 	}
-	return false, nil
+	return true, nil
 }
 
 func (l *UserLogic) Logout(id int64) (bool, error) {
-	rows, err := l.model.UpdateByWhere([]string{
+	user, err := l.model.FindById(id)
+	if err != nil {
+		return false, nil
+	}
+
+	user.IsDelete = 1
+	user.UpdatedAt = time.Now()
+
+	rows, err := l.model.UpdateByWhere(&user, []string{
 		"id = ?",
 	}, []any{
 		id,
-	}, []string{
-		"is_delete = ?",
-	}, []any{
-		1,
 	})
 	if err != nil {
 		return false, err
 	}
-	if rows != 0 {
-		return true, nil
+	if rows == 0 {
+		return false, nil
 	}
-	return false, nil
+	return true, nil
 }
 
 func (l *UserLogic) Register(in *pb.RegisterRequest) (int64, error) {
