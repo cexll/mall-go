@@ -3,21 +3,19 @@ package controllers
 import (
 	"mall-go/app/user/cmd/api/logic"
 	"mall-go/app/user/cmd/pb"
+	"mall-go/common"
 	"mall-go/common/di"
 	"mall-go/common/response"
 	"net/http"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/go-playground/validator/v10"
 )
 
 type UserController struct {
 	resp  response.Response
 	logic logic.UserLogic
 }
-
-var validate *validator.Validate
 
 type RegisterValidate struct {
 	Mobile   string `json:"mobile" validate:"required"`
@@ -26,15 +24,8 @@ type RegisterValidate struct {
 }
 
 func (t UserController) Register(c *gin.Context) {
-	validate = validator.New()
 	var req RegisterValidate
-	err := c.BindJSON(&req)
-	if err != nil {
-		di.Logrus().Error(err)
-		c.JSON(http.StatusOK, t.resp.Fail("参数异常"))
-		return
-	}
-	err = validate.Struct(req)
+	err := c.Bind(&req)
 	if err != nil {
 		di.Logrus().Error(err)
 		c.JSON(http.StatusOK, t.resp.Fail("参数异常"))
@@ -61,20 +52,14 @@ type LoginValidate struct {
 
 // Login 登陆
 func (t UserController) Login(c *gin.Context) {
-	validate = validator.New()
 	var req LoginValidate
-	err := c.BindJSON(&req)
+	err := c.Bind(&req)
 	if err != nil {
 		di.Logrus().Error(err)
 		c.JSON(http.StatusOK, t.resp.Fail("参数异常"))
 		return
 	}
-	err = validate.Struct(req)
-	if err != nil {
-		di.Logrus().Error(err)
-		c.JSON(http.StatusOK, t.resp.Fail("参数异常"))
-		return
-	}
+
 	resp, err := t.logic.Login(&pb.LoginRequest{
 		Mobile:   req.Mobile,
 		Password: req.Password,
@@ -93,20 +78,13 @@ type GetUserValidate struct {
 }
 
 func (t UserController) GetUser(c *gin.Context) {
-	validate = validator.New()
 	var req GetUserValidate
-	err := c.BindJSON(&req)
+	err := c.Bind(&req)
 	if err != nil {
-		di.Logrus().Error(err)
 		c.JSON(http.StatusOK, t.resp.Fail("参数异常"))
 		return
 	}
-	err = validate.Struct(req)
-	if err != nil {
-		di.Logrus().Error(err)
-		c.JSON(http.StatusOK, t.resp.Fail("参数异常"))
-		return
-	}
+
 	Id, err := strconv.ParseInt(req.Id, 10, 64)
 	if err != nil {
 		c.JSON(http.StatusOK, t.resp.Fail("parse int error"))
@@ -132,30 +110,19 @@ type SetUserValidate struct {
 }
 
 func (t UserController) SetUser(c *gin.Context) {
-	value, ok := c.Get("userId")
-	if !ok {
-		c.JSON(http.StatusOK, t.resp.Fail("获取用户ID失败"))
-		return
-	}
-	userId, err := strconv.ParseInt(value.(string), 10, 64)
+	userId, err := common.GetUserId(c)
 	if err != nil {
-		c.JSON(http.StatusOK, t.resp.Fail("转换用户ID异常"))
+		c.JSON(http.StatusOK, t.resp.Fail(err.Error()))
 		return
 	}
-	validate = validator.New()
+
 	var req SetUserValidate
-	err = c.BindJSON(&req)
+	err = c.Bind(&req)
 	if err != nil {
-		di.Logrus().Error(err)
 		c.JSON(http.StatusOK, t.resp.Fail("参数异常"))
 		return
 	}
-	err = validate.Struct(req)
-	if err != nil {
-		di.Logrus().Error(err)
-		c.JSON(http.StatusOK, t.resp.Fail("参数异常"))
-		return
-	}
+
 	resp, err := t.logic.SetUser(&pb.SetUserRequest{
 		Id:        userId,
 		Nickname:  req.Nickname,
@@ -173,12 +140,11 @@ func (t UserController) SetUser(c *gin.Context) {
 }
 
 func (t UserController) Logout(c *gin.Context) {
-	value, ok := c.Get("userId")
-	if !ok {
-		c.JSON(http.StatusOK, t.resp.Fail("获取用户ID失败"))
+	userId, err := common.GetUserId(c)
+	if err != nil {
+		c.JSON(http.StatusOK, t.resp.Fail(err.Error()))
 		return
 	}
-	userId := value.(int64)
 	resp, err := t.logic.Logout(&pb.LogOutRequest{
 		Id: userId,
 	})
