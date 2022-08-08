@@ -378,6 +378,226 @@ func (x *ReduceBalanceResponse) GetStatus() bool {
 	return false
 }
 
+type SubFrozenBalanceRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id     int64   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Amount float32 `protobuf:"fixed32,2,opt,name=amount,proto3" json:"amount,omitempty"`
+	Desc   string  `protobuf:"bytes,3,opt,name=desc,proto3" json:"desc,omitempty"`
+}
+
+func (x *SubFrozenBalanceRequest) Reset() {
+	*x = SubFrozenBalanceRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_balance_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SubFrozenBalanceRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SubFrozenBalanceRequest) ProtoMessage() {}
+
+func (x *SubFrozenBalanceRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_balance_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SubFrozenBalanceRequest.ProtoReflect.Descriptor instead.
+func (*SubFrozenBalanceRequest) Descriptor() ([]byte, []int) {
+	return file_balance_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *SubFrozenBalanceRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *SubFrozenBalanceRequest) GetAmount() float32 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
+func (x *SubFrozenBalanceRequest) GetDesc() string {
+	if x != nil {
+		return x.Desc
+	}
+	return ""
+}
+
+type SubFrozenBalanceResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Status bool `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+}
+
+func (x *SubFrozenBalanceResponse) Reset() {
+	*x = SubFrozenBalanceResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_balance_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SubFrozenBalanceResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SubFrozenBalanceResponse) ProtoMessage() {}
+
+func (x *SubFrozenBalanceResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_balance_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SubFrozenBalanceResponse.ProtoReflect.Descriptor instead.
+func (*SubFrozenBalanceResponse) Descriptor() ([]byte, []int) {
+	return file_balance_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *SubFrozenBalanceResponse) GetStatus() bool {
+	if x != nil {
+		return x.Status
+	}
+	return false
+}
+
+type ReduceFrozenBalanceRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id     int64   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Amount float32 `protobuf:"fixed32,2,opt,name=amount,proto3" json:"amount,omitempty"`
+	Desc   string  `protobuf:"bytes,3,opt,name=desc,proto3" json:"desc,omitempty"`
+}
+
+func (x *ReduceFrozenBalanceRequest) Reset() {
+	*x = ReduceFrozenBalanceRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_balance_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ReduceFrozenBalanceRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReduceFrozenBalanceRequest) ProtoMessage() {}
+
+func (x *ReduceFrozenBalanceRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_balance_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReduceFrozenBalanceRequest.ProtoReflect.Descriptor instead.
+func (*ReduceFrozenBalanceRequest) Descriptor() ([]byte, []int) {
+	return file_balance_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *ReduceFrozenBalanceRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *ReduceFrozenBalanceRequest) GetAmount() float32 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
+func (x *ReduceFrozenBalanceRequest) GetDesc() string {
+	if x != nil {
+		return x.Desc
+	}
+	return ""
+}
+
+type ReduceFrozenBalanceResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Status bool `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+}
+
+func (x *ReduceFrozenBalanceResponse) Reset() {
+	*x = ReduceFrozenBalanceResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_balance_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ReduceFrozenBalanceResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReduceFrozenBalanceResponse) ProtoMessage() {}
+
+func (x *ReduceFrozenBalanceResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_balance_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReduceFrozenBalanceResponse.ProtoReflect.Descriptor instead.
+func (*ReduceFrozenBalanceResponse) Descriptor() ([]byte, []int) {
+	return file_balance_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *ReduceFrozenBalanceResponse) GetStatus() bool {
+	if x != nil {
+		return x.Status
+	}
+	return false
+}
+
 var File_balance_proto protoreflect.FileDescriptor
 
 var file_balance_proto_rawDesc = []byte{
@@ -412,27 +632,60 @@ var file_balance_proto_rawDesc = []byte{
 	0x22, 0x2f, 0x0a, 0x15, 0x52, 0x65, 0x64, 0x75, 0x63, 0x65, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63,
 	0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61,
 	0x74, 0x75, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75,
-	0x73, 0x32, 0x9d, 0x02, 0x0a, 0x07, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x57, 0x0a,
-	0x0a, 0x47, 0x65, 0x74, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x23, 0x2e, 0x6d, 0x61,
-	0x6c, 0x6c, 0x2e, 0x72, 0x70, 0x63, 0x2e, 0x62, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x47,
-	0x65, 0x74, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x24, 0x2e, 0x6d, 0x61, 0x6c, 0x6c, 0x2e, 0x72, 0x70, 0x63, 0x2e, 0x62, 0x61, 0x6c, 0x61,
-	0x6e, 0x63, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x57, 0x0a, 0x0a, 0x53, 0x75, 0x62, 0x42, 0x61, 0x6c,
-	0x61, 0x6e, 0x63, 0x65, 0x12, 0x23, 0x2e, 0x6d, 0x61, 0x6c, 0x6c, 0x2e, 0x72, 0x70, 0x63, 0x2e,
-	0x62, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x53, 0x75, 0x62, 0x42, 0x61, 0x6c, 0x61, 0x6e,
-	0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x6d, 0x61, 0x6c, 0x6c,
-	0x2e, 0x72, 0x70, 0x63, 0x2e, 0x62, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x53, 0x75, 0x62,
-	0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x60, 0x0a, 0x0d, 0x52, 0x65, 0x64, 0x75, 0x63, 0x65, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65,
+	0x73, 0x22, 0x55, 0x0a, 0x17, 0x53, 0x75, 0x62, 0x46, 0x72, 0x6f, 0x7a, 0x65, 0x6e, 0x42, 0x61,
+	0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x12, 0x16, 0x0a, 0x06,
+	0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x02, 0x52, 0x06, 0x61, 0x6d,
+	0x6f, 0x75, 0x6e, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x65, 0x73, 0x63, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x04, 0x64, 0x65, 0x73, 0x63, 0x22, 0x32, 0x0a, 0x18, 0x53, 0x75, 0x62, 0x46,
+	0x72, 0x6f, 0x7a, 0x65, 0x6e, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x58, 0x0a, 0x1a,
+	0x52, 0x65, 0x64, 0x75, 0x63, 0x65, 0x46, 0x72, 0x6f, 0x7a, 0x65, 0x6e, 0x42, 0x61, 0x6c, 0x61,
+	0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x6d,
+	0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x02, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75,
+	0x6e, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x65, 0x73, 0x63, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x04, 0x64, 0x65, 0x73, 0x63, 0x22, 0x35, 0x0a, 0x1b, 0x52, 0x65, 0x64, 0x75, 0x63, 0x65,
+	0x46, 0x72, 0x6f, 0x7a, 0x65, 0x6e, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x32, 0x86, 0x04,
+	0x0a, 0x07, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x59, 0x0a, 0x0a, 0x47, 0x65, 0x74,
+	0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x23, 0x2e, 0x6d, 0x61, 0x6c, 0x6c, 0x2e, 0x72,
+	0x70, 0x63, 0x2e, 0x62, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x61,
+	0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x6d,
+	0x61, 0x6c, 0x6c, 0x2e, 0x72, 0x70, 0x63, 0x2e, 0x62, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x2e,
+	0x47, 0x65, 0x74, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x00, 0x12, 0x59, 0x0a, 0x0a, 0x53, 0x75, 0x62, 0x42, 0x61, 0x6c, 0x61, 0x6e,
+	0x63, 0x65, 0x12, 0x23, 0x2e, 0x6d, 0x61, 0x6c, 0x6c, 0x2e, 0x72, 0x70, 0x63, 0x2e, 0x62, 0x61,
+	0x6c, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x53, 0x75, 0x62, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x6d, 0x61, 0x6c, 0x6c, 0x2e, 0x72,
+	0x70, 0x63, 0x2e, 0x62, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x53, 0x75, 0x62, 0x42, 0x61,
+	0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12,
+	0x62, 0x0a, 0x0d, 0x52, 0x65, 0x64, 0x75, 0x63, 0x65, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65,
 	0x12, 0x26, 0x2e, 0x6d, 0x61, 0x6c, 0x6c, 0x2e, 0x72, 0x70, 0x63, 0x2e, 0x62, 0x61, 0x6c, 0x61,
 	0x6e, 0x63, 0x65, 0x2e, 0x52, 0x65, 0x64, 0x75, 0x63, 0x65, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63,
 	0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x6d, 0x61, 0x6c, 0x6c, 0x2e,
 	0x72, 0x70, 0x63, 0x2e, 0x62, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x52, 0x65, 0x64, 0x75,
 	0x63, 0x65, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x42, 0x25, 0x5a, 0x04, 0x2f, 0x3b, 0x70, 0x62, 0xe2, 0x02, 0x1c, 0x4d, 0x61, 0x6c, 0x6c,
-	0x2f, 0x52, 0x70, 0x63, 0x2f, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x2f, 0x47, 0x50, 0x42,
-	0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x22, 0x00, 0x12, 0x6b, 0x0a, 0x10, 0x53, 0x75, 0x62, 0x46, 0x72, 0x6f, 0x7a, 0x65, 0x6e,
+	0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x29, 0x2e, 0x6d, 0x61, 0x6c, 0x6c, 0x2e, 0x72,
+	0x70, 0x63, 0x2e, 0x62, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x53, 0x75, 0x62, 0x46, 0x72,
+	0x6f, 0x7a, 0x65, 0x6e, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x2a, 0x2e, 0x6d, 0x61, 0x6c, 0x6c, 0x2e, 0x72, 0x70, 0x63, 0x2e, 0x62, 0x61,
+	0x6c, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x53, 0x75, 0x62, 0x46, 0x72, 0x6f, 0x7a, 0x65, 0x6e, 0x42,
+	0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00,
+	0x12, 0x74, 0x0a, 0x13, 0x52, 0x65, 0x64, 0x75, 0x63, 0x65, 0x46, 0x72, 0x6f, 0x7a, 0x65, 0x6e,
+	0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x2c, 0x2e, 0x6d, 0x61, 0x6c, 0x6c, 0x2e, 0x72,
+	0x70, 0x63, 0x2e, 0x62, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x52, 0x65, 0x64, 0x75, 0x63,
+	0x65, 0x46, 0x72, 0x6f, 0x7a, 0x65, 0x6e, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2d, 0x2e, 0x6d, 0x61, 0x6c, 0x6c, 0x2e, 0x72, 0x70, 0x63,
+	0x2e, 0x62, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x52, 0x65, 0x64, 0x75, 0x63, 0x65, 0x46,
+	0x72, 0x6f, 0x7a, 0x65, 0x6e, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x25, 0x5a, 0x04, 0x2f, 0x3b, 0x70, 0x62, 0xe2, 0x02,
+	0x1c, 0x4d, 0x61, 0x6c, 0x6c, 0x2f, 0x52, 0x70, 0x63, 0x2f, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63,
+	0x65, 0x2f, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -447,24 +700,32 @@ func file_balance_proto_rawDescGZIP() []byte {
 	return file_balance_proto_rawDescData
 }
 
-var file_balance_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_balance_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_balance_proto_goTypes = []interface{}{
-	(*GetBalanceRequest)(nil),     // 0: mall.rpc.balance.GetBalanceRequest
-	(*GetBalanceResponse)(nil),    // 1: mall.rpc.balance.GetBalanceResponse
-	(*SubBalanceRequest)(nil),     // 2: mall.rpc.balance.SubBalanceRequest
-	(*SubBalanceResponse)(nil),    // 3: mall.rpc.balance.SubBalanceResponse
-	(*ReduceBalanceRequest)(nil),  // 4: mall.rpc.balance.ReduceBalanceRequest
-	(*ReduceBalanceResponse)(nil), // 5: mall.rpc.balance.ReduceBalanceResponse
+	(*GetBalanceRequest)(nil),           // 0: mall.rpc.balance.GetBalanceRequest
+	(*GetBalanceResponse)(nil),          // 1: mall.rpc.balance.GetBalanceResponse
+	(*SubBalanceRequest)(nil),           // 2: mall.rpc.balance.SubBalanceRequest
+	(*SubBalanceResponse)(nil),          // 3: mall.rpc.balance.SubBalanceResponse
+	(*ReduceBalanceRequest)(nil),        // 4: mall.rpc.balance.ReduceBalanceRequest
+	(*ReduceBalanceResponse)(nil),       // 5: mall.rpc.balance.ReduceBalanceResponse
+	(*SubFrozenBalanceRequest)(nil),     // 6: mall.rpc.balance.SubFrozenBalanceRequest
+	(*SubFrozenBalanceResponse)(nil),    // 7: mall.rpc.balance.SubFrozenBalanceResponse
+	(*ReduceFrozenBalanceRequest)(nil),  // 8: mall.rpc.balance.ReduceFrozenBalanceRequest
+	(*ReduceFrozenBalanceResponse)(nil), // 9: mall.rpc.balance.ReduceFrozenBalanceResponse
 }
 var file_balance_proto_depIdxs = []int32{
 	0, // 0: mall.rpc.balance.Balance.GetBalance:input_type -> mall.rpc.balance.GetBalanceRequest
 	2, // 1: mall.rpc.balance.Balance.SubBalance:input_type -> mall.rpc.balance.SubBalanceRequest
 	4, // 2: mall.rpc.balance.Balance.ReduceBalance:input_type -> mall.rpc.balance.ReduceBalanceRequest
-	1, // 3: mall.rpc.balance.Balance.GetBalance:output_type -> mall.rpc.balance.GetBalanceResponse
-	3, // 4: mall.rpc.balance.Balance.SubBalance:output_type -> mall.rpc.balance.SubBalanceResponse
-	5, // 5: mall.rpc.balance.Balance.ReduceBalance:output_type -> mall.rpc.balance.ReduceBalanceResponse
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
+	6, // 3: mall.rpc.balance.Balance.SubFrozenBalance:input_type -> mall.rpc.balance.SubFrozenBalanceRequest
+	8, // 4: mall.rpc.balance.Balance.ReduceFrozenBalance:input_type -> mall.rpc.balance.ReduceFrozenBalanceRequest
+	1, // 5: mall.rpc.balance.Balance.GetBalance:output_type -> mall.rpc.balance.GetBalanceResponse
+	3, // 6: mall.rpc.balance.Balance.SubBalance:output_type -> mall.rpc.balance.SubBalanceResponse
+	5, // 7: mall.rpc.balance.Balance.ReduceBalance:output_type -> mall.rpc.balance.ReduceBalanceResponse
+	7, // 8: mall.rpc.balance.Balance.SubFrozenBalance:output_type -> mall.rpc.balance.SubFrozenBalanceResponse
+	9, // 9: mall.rpc.balance.Balance.ReduceFrozenBalance:output_type -> mall.rpc.balance.ReduceFrozenBalanceResponse
+	5, // [5:10] is the sub-list for method output_type
+	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -548,6 +809,54 @@ func file_balance_proto_init() {
 				return nil
 			}
 		}
+		file_balance_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SubFrozenBalanceRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_balance_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SubFrozenBalanceResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_balance_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ReduceFrozenBalanceRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_balance_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ReduceFrozenBalanceResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -555,7 +864,7 @@ func file_balance_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_balance_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -587,6 +896,10 @@ type BalanceClient interface {
 	SubBalance(ctx context.Context, in *SubBalanceRequest, opts ...grpc.CallOption) (*SubBalanceResponse, error)
 	// 减少余额
 	ReduceBalance(ctx context.Context, in *ReduceBalanceRequest, opts ...grpc.CallOption) (*ReduceBalanceResponse, error)
+	// 增加冻结余额
+	SubFrozenBalance(ctx context.Context, in *SubFrozenBalanceRequest, opts ...grpc.CallOption) (*SubFrozenBalanceResponse, error)
+	// 减少冻结余额
+	ReduceFrozenBalance(ctx context.Context, in *ReduceFrozenBalanceRequest, opts ...grpc.CallOption) (*ReduceFrozenBalanceResponse, error)
 }
 
 type balanceClient struct {
@@ -624,6 +937,24 @@ func (c *balanceClient) ReduceBalance(ctx context.Context, in *ReduceBalanceRequ
 	return out, nil
 }
 
+func (c *balanceClient) SubFrozenBalance(ctx context.Context, in *SubFrozenBalanceRequest, opts ...grpc.CallOption) (*SubFrozenBalanceResponse, error) {
+	out := new(SubFrozenBalanceResponse)
+	err := c.cc.Invoke(ctx, "/mall.rpc.balance.Balance/SubFrozenBalance", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *balanceClient) ReduceFrozenBalance(ctx context.Context, in *ReduceFrozenBalanceRequest, opts ...grpc.CallOption) (*ReduceFrozenBalanceResponse, error) {
+	out := new(ReduceFrozenBalanceResponse)
+	err := c.cc.Invoke(ctx, "/mall.rpc.balance.Balance/ReduceFrozenBalance", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BalanceServer is the server API for Balance service.
 type BalanceServer interface {
 	// 获取余额
@@ -632,6 +963,10 @@ type BalanceServer interface {
 	SubBalance(context.Context, *SubBalanceRequest) (*SubBalanceResponse, error)
 	// 减少余额
 	ReduceBalance(context.Context, *ReduceBalanceRequest) (*ReduceBalanceResponse, error)
+	// 增加冻结余额
+	SubFrozenBalance(context.Context, *SubFrozenBalanceRequest) (*SubFrozenBalanceResponse, error)
+	// 减少冻结余额
+	ReduceFrozenBalance(context.Context, *ReduceFrozenBalanceRequest) (*ReduceFrozenBalanceResponse, error)
 }
 
 // UnimplementedBalanceServer can be embedded to have forward compatible implementations.
@@ -646,6 +981,12 @@ func (*UnimplementedBalanceServer) SubBalance(context.Context, *SubBalanceReques
 }
 func (*UnimplementedBalanceServer) ReduceBalance(context.Context, *ReduceBalanceRequest) (*ReduceBalanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReduceBalance not implemented")
+}
+func (*UnimplementedBalanceServer) SubFrozenBalance(context.Context, *SubFrozenBalanceRequest) (*SubFrozenBalanceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SubFrozenBalance not implemented")
+}
+func (*UnimplementedBalanceServer) ReduceFrozenBalance(context.Context, *ReduceFrozenBalanceRequest) (*ReduceFrozenBalanceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReduceFrozenBalance not implemented")
 }
 
 func RegisterBalanceServer(s *grpc.Server, srv BalanceServer) {
@@ -706,6 +1047,42 @@ func _Balance_ReduceBalance_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Balance_SubFrozenBalance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SubFrozenBalanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BalanceServer).SubFrozenBalance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/mall.rpc.balance.Balance/SubFrozenBalance",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BalanceServer).SubFrozenBalance(ctx, req.(*SubFrozenBalanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Balance_ReduceFrozenBalance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReduceFrozenBalanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BalanceServer).ReduceFrozenBalance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/mall.rpc.balance.Balance/ReduceFrozenBalance",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BalanceServer).ReduceFrozenBalance(ctx, req.(*ReduceFrozenBalanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Balance_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "mall.rpc.balance.Balance",
 	HandlerType: (*BalanceServer)(nil),
@@ -721,6 +1098,14 @@ var _Balance_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReduceBalance",
 			Handler:    _Balance_ReduceBalance_Handler,
+		},
+		{
+			MethodName: "SubFrozenBalance",
+			Handler:    _Balance_SubFrozenBalance_Handler,
+		},
+		{
+			MethodName: "ReduceFrozenBalance",
+			Handler:    _Balance_ReduceFrozenBalance_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

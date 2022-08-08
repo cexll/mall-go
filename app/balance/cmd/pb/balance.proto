@@ -11,6 +11,10 @@ service Balance {
   rpc SubBalance(SubBalanceRequest) returns(SubBalanceResponse) {}
   // 减少余额
   rpc ReduceBalance(ReduceBalanceRequest) returns(ReduceBalanceResponse) {}
+  // 增加冻结余额
+  rpc SubFrozenBalance(SubFrozenBalanceRequest) returns(SubFrozenBalanceResponse) {}
+  // 减少冻结余额
+  rpc ReduceFrozenBalance(ReduceFrozenBalanceRequest) returns(ReduceFrozenBalanceResponse) {}
 }
 
 message GetBalanceRequest {
@@ -43,5 +47,25 @@ message ReduceBalanceRequest {
 }
 
 message ReduceBalanceResponse {
+  bool status = 1;
+}
+
+message SubFrozenBalanceRequest {
+  int64 id = 1;
+  float amount = 2;
+  string desc = 3;
+}
+
+message SubFrozenBalanceResponse {
+  bool status = 1;
+}
+
+message ReduceFrozenBalanceRequest {
+  int64 id = 1;
+  float amount = 2;
+  string desc = 3;
+}
+
+message ReduceFrozenBalanceResponse {
   bool status = 1;
 }

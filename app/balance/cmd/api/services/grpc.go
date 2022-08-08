@@ -8,8 +8,8 @@ import (
 type GRPCService struct {
 }
 
-// NewUserRpcClient 创建一个user rpc 连接
-func (t GRPCService) NewUserRpcClient() (pb.BalanceClient, error) {
+// NewBalanceRpcClient 创建一个BalanceRPC连接
+func (t GRPCService) NewBalanceRpcClient() (pb.BalanceClient, error) {
 	balance, err := grpc.NewClient(grpc.BalanceGRPCAddr, func(options *grpc.ClientOptions) {})
 	if err != nil {
 		return nil, err
