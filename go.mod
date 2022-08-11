@@ -8,9 +8,13 @@ require (
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/go-redsync/redsync/v4 v4.5.1
+	github.com/go-session/redis v3.0.1+incompatible
+	github.com/go-session/session v3.1.2+incompatible
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/golang-jwt/jwt/v4 v4.4.2
 	github.com/google/uuid v1.3.0
+	github.com/gorilla/websocket v1.4.2
+	github.com/mix-go/dotenv v1.1.15
 	github.com/mix-go/xcli v1.1.20
 	github.com/mix-go/xdi v1.1.16
 	github.com/mix-go/xsql v1.1.7
@@ -41,6 +45,7 @@ require (
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
+	github.com/joho/godotenv v1.3.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/magiconair/properties v1.8.6 // indirect
