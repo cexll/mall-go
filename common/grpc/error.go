@@ -3,7 +3,7 @@ package grpc
 import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"mall-go/app/user/cmd/pb"
+	"mall-go/common/grpc/pb"
 )
 
 func GrpcError(rpcError error, errCode int32) error {
