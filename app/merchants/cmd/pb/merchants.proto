@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+package mall.rpc.merchants;
+
+option go_package = "/;pb";
+

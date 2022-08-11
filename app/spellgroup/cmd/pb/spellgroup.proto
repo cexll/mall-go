@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+package mall.rpc.spellgroup;
+
+option go_package = "/;pb";
+
