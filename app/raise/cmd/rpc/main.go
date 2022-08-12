@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/mix-go/xcli"
-	"mall-go/app/coupon/cmd/rpc/commands"
+	"mall-go/app/raise/cmd/rpc/commands"
 	"mall-go/common/config"
 	_ "mall-go/common/di"
 )
