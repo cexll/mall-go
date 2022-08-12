@@ -11,7 +11,7 @@ type UserLogic struct {
 	grpcService services.GRPCService
 }
 
-func (t UserLogic) Register(req *pb.RegisterRequest) (*pb.RegisterResponse, error) {
+func (t *UserLogic) Register(req *pb.RegisterRequest) (*pb.RegisterResponse, error) {
 	cli, err := t.grpcService.NewUserRpcClient()
 	if err != nil {
 		return nil, err
@@ -24,7 +24,7 @@ func (t UserLogic) Register(req *pb.RegisterRequest) (*pb.RegisterResponse, erro
 	return resp, nil
 }
 
-func (t UserLogic) GetUser(req *pb.GetUserRequest) (*pb.GetUserResponse, error) {
+func (t *UserLogic) GetUser(req *pb.GetUserRequest) (*pb.GetUserResponse, error) {
 	cli, err := t.grpcService.NewUserRpcClient()
 	if err != nil {
 		return nil, err
@@ -36,7 +36,7 @@ func (t UserLogic) GetUser(req *pb.GetUserRequest) (*pb.GetUserResponse, error) 
 	return resp, nil
 }
 
-func (t UserLogic) SetUser(req *pb.SetUserRequest) (*pb.SetUserResponse, error) {
+func (t *UserLogic) SetUser(req *pb.SetUserRequest) (*pb.SetUserResponse, error) {
 	cli, err := t.grpcService.NewUserRpcClient()
 	if err != nil {
 		return nil, err
@@ -48,7 +48,7 @@ func (t UserLogic) SetUser(req *pb.SetUserRequest) (*pb.SetUserResponse, error) 
 	return resp, nil
 }
 
-func (t UserLogic) Logout(req *pb.LogOutRequest) (*pb.LogOutResponse, error) {
+func (t *UserLogic) Logout(req *pb.LogOutRequest) (*pb.LogOutResponse, error) {
 	cli, err := t.grpcService.NewUserRpcClient()
 	if err != nil {
 		return nil, err
@@ -69,7 +69,7 @@ type LoginResponse struct {
 	AvatarUrl string `json:"avatar_url"`
 }
 
-func (t UserLogic) Login(req *pb.LoginRequest) (res *LoginResponse, err error) {
+func (t *UserLogic) Login(req *pb.LoginRequest) (res *LoginResponse, err error) {
 	cli, err := t.grpcService.NewUserRpcClient()
 	if err != nil {
 		return nil, err

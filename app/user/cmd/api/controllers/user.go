@@ -23,7 +23,7 @@ type RegisterValidate struct {
 	Password string `json:"password" validate:"required"`
 }
 
-func (t UserController) Register(c *gin.Context) {
+func (t *UserController) Register(c *gin.Context) {
 	var req RegisterValidate
 	err := c.Bind(&req)
 	if err != nil {
@@ -51,7 +51,7 @@ type LoginValidate struct {
 }
 
 // Login 登陆
-func (t UserController) Login(c *gin.Context) {
+func (t *UserController) Login(c *gin.Context) {
 	var req LoginValidate
 	err := c.Bind(&req)
 	if err != nil {
@@ -77,7 +77,7 @@ type GetUserValidate struct {
 	Id string `json:"id" validate:"required"`
 }
 
-func (t UserController) GetUser(c *gin.Context) {
+func (t *UserController) GetUser(c *gin.Context) {
 	var req GetUserValidate
 	err := c.Bind(&req)
 	if err != nil {
@@ -110,7 +110,7 @@ type SetUserValidate struct {
 	Password  string `json:"password" validate:"max=16"`
 }
 
-func (t UserController) SetUser(c *gin.Context) {
+func (t *UserController) SetUser(c *gin.Context) {
 	userId, err := common.GetUserId(c)
 	if err != nil {
 		c.JSON(http.StatusOK, t.resp.Fail(err.Error()))
@@ -141,7 +141,7 @@ func (t UserController) SetUser(c *gin.Context) {
 	c.JSON(http.StatusOK, t.resp.Success(resp))
 }
 
-func (t UserController) Logout(c *gin.Context) {
+func (t *UserController) Logout(c *gin.Context) {
 	userId, err := common.GetUserId(c)
 	if err != nil {
 		c.JSON(http.StatusOK, t.resp.Fail(err.Error()))
