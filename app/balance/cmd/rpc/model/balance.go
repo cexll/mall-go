@@ -24,17 +24,17 @@ func (MallBalance) TableName() string {
 	return "mall_balance"
 }
 
-func (m MallBalance) FindById(id int64) (MallBalance, error) {
+func (m *MallBalance) FindById(id int64) (*MallBalance, error) {
 	db := di.Xsql()
 	var balance MallBalance
 	err := db.First(&balance, fmt.Sprintf("SELECT * FROM %s WHERE `id` = ? LIMIT 1;", m.TableName()), id)
 	if err != nil {
-		return balance, err
+		return nil, err
 	}
-	return balance, nil
+	return &balance, nil
 }
 
-func (m MallBalance) FindByWhere(column []string, where []string, args []any, opts []string) (MallBalance, error) {
+func (m *MallBalance) FindByWhere(column []string, where []string, args []any, opts []string) (*MallBalance, error) {
 	db := di.Xsql()
 	var balance MallBalance
 	sql := fmt.Sprintf("SELECT %s FROM `%s` WHERE %s %s LIMIT 1;",
@@ -47,12 +47,12 @@ func (m MallBalance) FindByWhere(column []string, where []string, args []any, op
 	)
 
 	if err != nil {
-		return balance, err
+		return nil, err
 	}
-	return balance, nil
+	return &balance, nil
 }
 
-func (m MallBalance) CreateOne(balance *MallBalance) (int64, error) {
+func (m *MallBalance) CreateOne(balance *MallBalance) (int64, error) {
 	db := di.Xsql()
 	row, err := db.Insert(balance)
 	if err != nil {
@@ -61,7 +61,7 @@ func (m MallBalance) CreateOne(balance *MallBalance) (int64, error) {
 	return row.LastInsertId()
 }
 
-func (m MallBalance) CreateAll(balance []*MallBalance) (int64, error) {
+func (m *MallBalance) CreateAll(balance []*MallBalance) (int64, error) {
 	db := di.Xsql()
 	row, err := db.BatchInsert(balance)
 	if err != nil {
@@ -70,9 +70,9 @@ func (m MallBalance) CreateAll(balance []*MallBalance) (int64, error) {
 	return row.LastInsertId()
 }
 
-func (m MallBalance) GetManyByWhere(column []string, where []string, args []any, opts []string) ([]MallBalance, error) {
+func (m *MallBalance) GetManyByWhere(column []string, where []string, args []any, opts []string) ([]*MallBalance, error) {
 	db := di.Xsql()
-	var balance []MallBalance
+	var balance []*MallBalance
 	err := db.Find(&balance, fmt.Sprintf("SELECT %s FROM `%s` WHERE %s %s;",
 		strings.Join(column, ", "),
 		m.TableName(),
@@ -81,12 +81,12 @@ func (m MallBalance) GetManyByWhere(column []string, where []string, args []any,
 		args...,
 	)
 	if err != nil {
-		return balance, err
+		return nil, err
 	}
 	return balance, nil
 }
 
-func (m MallBalance) UpdateByWhere(balance *MallBalance, where []string, args []any) (int64, error) {
+func (m *MallBalance) UpdateByWhere(balance *MallBalance, where []string, args []any) (int64, error) {
 	db := di.Xsql()
 	rows, err := db.Update(balance, strings.Join(where, ", "), args...)
 	if err != nil {
@@ -95,7 +95,7 @@ func (m MallBalance) UpdateByWhere(balance *MallBalance, where []string, args []
 	return rows.RowsAffected()
 }
 
-func (m MallBalance) DeleteByWhere(where []string, args []any) (int64, error) {
+func (m *MallBalance) DeleteByWhere(where []string, args []any) (int64, error) {
 	db := di.Xsql()
 	result, err := db.Exec(fmt.Sprintf("DELETE  FROM `%s` WHERE %s;",
 		m.TableName(), strings.Join(where, " AND ")), args...)

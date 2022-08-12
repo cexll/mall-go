@@ -15,7 +15,7 @@ type BalanceLogic struct {
 }
 
 // SubFrozenBalance 增加冻结
-func (t BalanceLogic) SubFrozenBalance(in *pb.SubFrozenBalanceRequest) (bool, error) {
+func (t *BalanceLogic) SubFrozenBalance(in *pb.SubFrozenBalanceRequest) (bool, error) {
 	balance, err := t.model.FindById(in.Id)
 	if err != nil {
 		return false, err
@@ -30,7 +30,7 @@ func (t BalanceLogic) SubFrozenBalance(in *pb.SubFrozenBalanceRequest) (bool, er
 
 	balance.UpdatedAt = time.Now()
 
-	rows, err := t.model.UpdateByWhere(&balance, []string{
+	rows, err := t.model.UpdateByWhere(balance, []string{
 		"id = ?",
 	}, []any{
 		in.Id,
@@ -46,7 +46,7 @@ func (t BalanceLogic) SubFrozenBalance(in *pb.SubFrozenBalanceRequest) (bool, er
 }
 
 // ReduceFrozenBalance 减少冻结
-func (t BalanceLogic) ReduceFrozenBalance(in *pb.ReduceFrozenBalanceRequest) (bool, error) {
+func (t *BalanceLogic) ReduceFrozenBalance(in *pb.ReduceFrozenBalanceRequest) (bool, error) {
 	balance, err := t.model.FindById(in.Id)
 	if err != nil {
 		return false, err
@@ -75,7 +75,7 @@ func (t BalanceLogic) ReduceFrozenBalance(in *pb.ReduceFrozenBalanceRequest) (bo
 
 	balance.UpdatedAt = time.Now()
 
-	rows, err := t.model.UpdateByWhere(&balance, []string{
+	rows, err := t.model.UpdateByWhere(balance, []string{
 		"id = ?",
 	}, []any{
 		in.Id,
@@ -92,7 +92,7 @@ func (t BalanceLogic) ReduceFrozenBalance(in *pb.ReduceFrozenBalanceRequest) (bo
 }
 
 // SubBalance 增加余额
-func (t BalanceLogic) SubBalance(in *pb.SubBalanceRequest) (bool, error) {
+func (t *BalanceLogic) SubBalance(in *pb.SubBalanceRequest) (bool, error) {
 	balance, err := t.model.FindById(in.Id)
 	if err != nil {
 		return false, err
@@ -106,7 +106,7 @@ func (t BalanceLogic) SubBalance(in *pb.SubBalanceRequest) (bool, error) {
 	}
 	balance.UpdatedAt = time.Now()
 
-	rows, err := t.model.UpdateByWhere(&balance, []string{
+	rows, err := t.model.UpdateByWhere(balance, []string{
 		"id = ?",
 	}, []any{
 		in.Id,
@@ -123,7 +123,7 @@ func (t BalanceLogic) SubBalance(in *pb.SubBalanceRequest) (bool, error) {
 }
 
 // ReduceBalance 减少余额
-func (t BalanceLogic) ReduceBalance(in *pb.ReduceBalanceRequest) (bool, error) {
+func (t *BalanceLogic) ReduceBalance(in *pb.ReduceBalanceRequest) (bool, error) {
 	balance, err := t.model.FindById(in.Id)
 	if err != nil {
 		return false, err
@@ -148,7 +148,7 @@ func (t BalanceLogic) ReduceBalance(in *pb.ReduceBalanceRequest) (bool, error) {
 		balance.Available += in.Amount
 	}
 	balance.UpdatedAt = time.Now()
-	rows, err := t.model.UpdateByWhere(&balance, []string{
+	rows, err := t.model.UpdateByWhere(balance, []string{
 		"id = ?",
 	}, []any{
 		in.Id,
@@ -165,7 +165,7 @@ func (t BalanceLogic) ReduceBalance(in *pb.ReduceBalanceRequest) (bool, error) {
 }
 
 // GetBalance 获取钱包
-func (t BalanceLogic) GetBalance(in *pb.GetBalanceRequest) (model.MallBalance, error) {
+func (t *BalanceLogic) GetBalance(in *pb.GetBalanceRequest) (*model.MallBalance, error) {
 	balance, err := t.model.FindByWhere([]string{
 		"id", "user_id", "type", "available", "frozen", "status",
 	}, []string{
@@ -179,7 +179,7 @@ func (t BalanceLogic) GetBalance(in *pb.GetBalanceRequest) (model.MallBalance, e
 	if err != nil {
 		if err == xsql.ErrNoRows {
 			// 不存在则创建一个钱包
-			newBalance := model.MallBalance{
+			newBalance := &model.MallBalance{
 				UserId:    in.UserId,
 				Type:      int8(in.Type),
 				Available: 0,
@@ -188,7 +188,7 @@ func (t BalanceLogic) GetBalance(in *pb.GetBalanceRequest) (model.MallBalance, e
 				CreatedAt: time.Now(),
 				UpdatedAt: time.Now(),
 			}
-			id, err := t.model.CreateOne(&newBalance)
+			id, err := t.model.CreateOne(newBalance)
 			if err != nil {
 				return balance, err
 			}
