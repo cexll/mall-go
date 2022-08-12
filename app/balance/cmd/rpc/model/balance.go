@@ -12,8 +12,8 @@ type MallBalance struct {
 	ID        int64     `xsql:"id"`
 	UserId    int64     `xsql:"user_id"`
 	Type      int8      `xsql:"type"`      // 类型\r\n1 用户\r\n2 商户
-	Available float64   `xsql:"available"` // 可用
-	Frozen    float64   `xsql:"frozen"`    // 冻结
+	Available uint64    `xsql:"available"` // 可用
+	Frozen    uint64    `xsql:"frozen"`    // 冻结
 	Status    int64     `xsql:"status"`    // 状态 \r\n1 正常\r\n2 冻结
 	CreatedAt time.Time `xsql:"created_at"`
 	UpdatedAt time.Time `xsql:"updated_at"`
@@ -45,6 +45,7 @@ func (m MallBalance) FindByWhere(column []string, where []string, args []any, op
 	err := db.First(&balance, sql,
 		args...,
 	)
+
 	if err != nil {
 		return balance, err
 	}

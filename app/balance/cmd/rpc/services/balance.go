@@ -60,7 +60,7 @@ func (t *BalanceService) GetBalance(ctx context.Context, in *pb.GetBalanceReques
 		Id:        balance.ID,
 		UserId:    balance.UserId,
 		Type:      int32(balance.Type),
-		Available: float32(balance.Available),
-		Freeze:    float32(balance.Frozen),
+		Available: balance.Available,
+		Frozen:    balance.Frozen,
 	}, nil
 }

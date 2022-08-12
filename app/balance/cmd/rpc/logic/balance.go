@@ -3,6 +3,7 @@ package logic
 import (
 	"errors"
 	"fmt"
+	"github.com/mix-go/xsql"
 	"mall-go/app/balance/cmd/pb"
 	"mall-go/app/balance/cmd/rpc/model"
 	redsync "mall-go/common/lock"
@@ -24,7 +25,7 @@ func (t BalanceLogic) SubFrozenBalance(in *pb.SubFrozenBalanceRequest) (bool, er
 	}
 
 	if in.Amount > 0 {
-		balance.Frozen += float64(in.Amount)
+		balance.Frozen += in.Amount
 	}
 
 	balance.UpdatedAt = time.Now()
@@ -53,12 +54,13 @@ func (t BalanceLogic) ReduceFrozenBalance(in *pb.ReduceFrozenBalanceRequest) (bo
 	if balance.Status == 2 {
 		return false, errors.New("钱包已被冻结")
 	}
-	if balance.Frozen < float64(in.Amount) {
+	if balance.Frozen < in.Amount {
 		return false, errors.New("可操作金额小于操作金额")
 	}
 	lock := redsync.NewLock()
 	mutex := lock.NewMutex(fmt.Sprintf("ReduceFrozenBalance: %d", in.Id))
 	if err = mutex.Lock(); err != nil {
+		fmt.Println(err)
 		return false, errors.New("业务忙,正在操作")
 	}
 	defer func() {
@@ -68,7 +70,7 @@ func (t BalanceLogic) ReduceFrozenBalance(in *pb.ReduceFrozenBalanceRequest) (bo
 	}()
 
 	if in.Amount > 0 {
-		balance.Frozen -= float64(in.Amount)
+		balance.Frozen -= in.Amount
 	}
 
 	balance.UpdatedAt = time.Now()
@@ -100,7 +102,7 @@ func (t BalanceLogic) SubBalance(in *pb.SubBalanceRequest) (bool, error) {
 	}
 
 	if in.Amount > 0 {
-		balance.Available += float64(in.Amount)
+		balance.Available += in.Amount
 	}
 	balance.UpdatedAt = time.Now()
 
@@ -129,7 +131,7 @@ func (t BalanceLogic) ReduceBalance(in *pb.ReduceBalanceRequest) (bool, error) {
 	if balance.Status == 2 {
 		return false, errors.New("钱包已被冻结")
 	}
-	if balance.Available < float64(in.Amount) {
+	if balance.Available < in.Amount {
 		return false, errors.New("可操作金额小于操作金额")
 	}
 	lock := redsync.NewLock()
@@ -143,7 +145,7 @@ func (t BalanceLogic) ReduceBalance(in *pb.ReduceBalanceRequest) (bool, error) {
 		}
 	}()
 	if in.Amount > 0 {
-		balance.Available += float64(in.Amount)
+		balance.Available += in.Amount
 	}
 	balance.UpdatedAt = time.Now()
 	rows, err := t.model.UpdateByWhere(&balance, []string{
@@ -163,9 +165,9 @@ func (t BalanceLogic) ReduceBalance(in *pb.ReduceBalanceRequest) (bool, error) {
 }
 
 // GetBalance 获取钱包
-func (t BalanceLogic) GetBalance(in *pb.GetBalanceRequest) (*model.MallBalance, error) {
+func (t BalanceLogic) GetBalance(in *pb.GetBalanceRequest) (model.MallBalance, error) {
 	balance, err := t.model.FindByWhere([]string{
-		"id", "user_id", "type", "available", "freeze", "status",
+		"id", "user_id", "type", "available", "frozen", "status",
 	}, []string{
 		"user_id = ?",
 		"type = ?",
@@ -173,12 +175,31 @@ func (t BalanceLogic) GetBalance(in *pb.GetBalanceRequest) (*model.MallBalance, 
 		in.UserId,
 		in.Type,
 	}, []string{})
-	// TODO 不存在则创建
+
 	if err != nil {
-		return nil, err
+		if err == xsql.ErrNoRows {
+			// 不存在则创建一个钱包
+			newBalance := model.MallBalance{
+				UserId:    in.UserId,
+				Type:      int8(in.Type),
+				Available: 0,
+				Frozen:    0,
+				Status:    1,
+				CreatedAt: time.Now(),
+				UpdatedAt: time.Now(),
+			}
+			id, err := t.model.CreateOne(&newBalance)
+			if err != nil {
+				return balance, err
+			}
+			newBalance.ID = id
+
+			return newBalance, nil
+		}
+		return balance, err
 	}
 	if balance.Status == 2 {
-		return nil, errors.New("钱包已被冻结")
+		return balance, errors.New("钱包已被冻结")
 	}
-	return &balance, nil
+	return balance, nil
 }
