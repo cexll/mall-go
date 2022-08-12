@@ -3,7 +3,7 @@ syntax = "proto3";
 package mall.rpc.balance;
 
 option go_package = "/;pb";
-option php_metadata_namespace = "Mall/Rpc/Balance/GPBMetadata";
+
 service Balance {
   // 获取余额
   rpc GetBalance(GetBalanceRequest) returns(GetBalanceResponse) {}
