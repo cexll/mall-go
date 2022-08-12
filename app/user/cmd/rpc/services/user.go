@@ -13,7 +13,7 @@ type UserService struct {
 	logic logic.UserLogic
 }
 
-func (t UserService) GetUser(ctx context.Context, in *pb.GetUserRequest) (*pb.GetUserResponse, error) {
+func (t *UserService) GetUser(ctx context.Context, in *pb.GetUserRequest) (*pb.GetUserResponse, error) {
 	if in.Id == 0 {
 		return nil, grpc.GrpcError(errors.New("id不能为空"), 100)
 	}
@@ -34,7 +34,7 @@ func (t UserService) GetUser(ctx context.Context, in *pb.GetUserRequest) (*pb.Ge
 	}, nil
 }
 
-func (t UserService) SetUser(ctx context.Context, in *pb.SetUserRequest) (*pb.SetUserResponse, error) {
+func (t *UserService) SetUser(ctx context.Context, in *pb.SetUserRequest) (*pb.SetUserResponse, error) {
 	bool, err := t.logic.SetUser(in)
 	if err != nil {
 		return nil, grpc.GrpcError(err, 100)
@@ -45,7 +45,7 @@ func (t UserService) SetUser(ctx context.Context, in *pb.SetUserRequest) (*pb.Se
 	}, nil
 }
 
-func (t UserService) Logout(ctx context.Context, in *pb.LogOutRequest) (*pb.LogOutResponse, error) {
+func (t *UserService) Logout(ctx context.Context, in *pb.LogOutRequest) (*pb.LogOutResponse, error) {
 	bool, err := t.logic.Logout(in.Id)
 	if err != nil {
 		return nil, grpc.GrpcError(err, 100)
@@ -56,7 +56,7 @@ func (t UserService) Logout(ctx context.Context, in *pb.LogOutRequest) (*pb.LogO
 	}, nil
 }
 
-func (t UserService) Register(ctx context.Context, in *pb.RegisterRequest) (*pb.RegisterResponse, error) {
+func (t *UserService) Register(ctx context.Context, in *pb.RegisterRequest) (*pb.RegisterResponse, error) {
 	id, err := t.logic.Register(in)
 	if err != nil {
 		return nil, grpc.GrpcError(err, 100)
@@ -67,7 +67,7 @@ func (t UserService) Register(ctx context.Context, in *pb.RegisterRequest) (*pb.
 	}, nil
 }
 
-func (t UserService) Login(ctx context.Context, in *pb.LoginRequest) (*pb.LoginResponse, error) {
+func (t *UserService) Login(ctx context.Context, in *pb.LoginRequest) (*pb.LoginResponse, error) {
 	user, err := t.logic.Login(in)
 	if err != nil {
 		return nil, grpc.GrpcError(err, 100)

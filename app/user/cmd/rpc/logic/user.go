@@ -12,7 +12,7 @@ type UserLogic struct {
 	model model.MallUser
 }
 
-func (l *UserLogic) GetUser(id int64) (model.MallUser, error) {
+func (l *UserLogic) GetUser(id int64) (*model.MallUser, error) {
 	user, err := l.model.FindByWhere([]string{
 		"id", "nickname", "avatar_url", "mobile", "signature", "status", "is_delete", "created_at", "updated_at",
 	}, []string{
@@ -57,7 +57,7 @@ func (l *UserLogic) SetUser(in *pb.SetUserRequest) (bool, error) {
 		user.Password = hashPass
 	}
 	user.UpdatedAt = time.Now()
-	rows, err := l.model.UpdateByWhere(&user, []string{
+	rows, err := l.model.UpdateByWhere(user, []string{
 		"id = ?",
 	}, []any{
 		in.Id,
@@ -80,7 +80,7 @@ func (l *UserLogic) Logout(id int64) (bool, error) {
 	user.IsDelete = 1
 	user.UpdatedAt = time.Now()
 
-	rows, err := l.model.UpdateByWhere(&user, []string{
+	rows, err := l.model.UpdateByWhere(user, []string{
 		"id = ?",
 	}, []any{
 		id,
@@ -113,9 +113,8 @@ func (l *UserLogic) Register(in *pb.RegisterRequest) (int64, error) {
 	})
 }
 
-func (l *UserLogic) Login(in *pb.LoginRequest) (model.MallUser, error) {
-	var user model.MallUser
-	result, err := l.model.FindByWhere([]string{
+func (l *UserLogic) Login(in *pb.LoginRequest) (*model.MallUser, error) {
+	user, err := l.model.FindByWhere([]string{
 		"id", "nickname", "mobile", "password", "avatar_url",
 	}, []string{
 		"mobile = ?",
@@ -124,17 +123,18 @@ func (l *UserLogic) Login(in *pb.LoginRequest) (model.MallUser, error) {
 	}, []string{})
 
 	if err != nil {
-		return user, err
+		return nil, err
 	}
-	if result.ID == 0 {
-		return user, errors.New("用户不存在")
+	if user.ID == 0 {
+		return nil, errors.New("用户不存在")
 	}
-	if result.IsDelete == 1 {
-		return user, errors.New("用户已经注销")
-	}
-	if hash.PasswordVerify(in.Password, user.Password) {
-		return user, errors.New("密码错误")
+	if user.IsDelete == 1 {
+		return nil, errors.New("用户已经注销")
 	}
 
-	return result, nil
+	if hash.PasswordVerify(in.Password, user.Password) {
+		return nil, errors.New("密码错误")
+	}
+
+	return user, nil
 }
