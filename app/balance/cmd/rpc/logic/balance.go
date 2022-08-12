@@ -1,9 +1,9 @@
 package logic
 
 import (
+	"database/sql"
 	"errors"
 	"fmt"
-	"github.com/mix-go/xsql"
 	"mall-go/app/balance/cmd/pb"
 	"mall-go/app/balance/cmd/rpc/model"
 	redsync "mall-go/common/lock"
@@ -177,7 +177,7 @@ func (t *BalanceLogic) GetBalance(in *pb.GetBalanceRequest) (*model.MallBalance,
 	}, []string{})
 
 	if err != nil {
-		if err == xsql.ErrNoRows {
+		if err == sql.ErrNoRows {
 			// 不存在则创建一个钱包
 			newBalance := &model.MallBalance{
 				UserId:    in.UserId,
