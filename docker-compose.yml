@@ -8,7 +8,8 @@ services:
     build:
       context: .
       args:
-        path: "/app/user/cmd/api"
+        path: "app/user/cmd/api"
+        buildpath: "app/user/cmd"
     ports:
       - "10001:8080/tcp"
     expose:
@@ -22,7 +23,8 @@ services:
     build:
       context: .
       args:
-        path: "/app/user/cmd/rpc"
+        path: "app/user/cmd/rpc"
+        buildpath: "app/user/cmd"
     ports:
       - "10002:8080/tcp"
     expose:
@@ -30,12 +32,14 @@ services:
     command: ./bin/main grpc:server -f etc/config.yaml
     networks:
       - mall-net
-  # 余额API
+
+  # 余额 API
   balance-api:
     build:
       context: .
       args:
-        path: "/app/balance/cmd/api"
+        path: "app/balance/cmd/api"
+        buildpath: "app/balance/cmd"
     ports:
       - "10011:8080/tcp"
     expose:
@@ -43,14 +47,408 @@ services:
     command: ./bin/main api -f etc/config.yaml
     networks:
       - mall-net
-  # 余额RPC
+
+  # 余额 RPC
   balance-rpc:
     build:
       context: .
       args:
-        path: "/app/balance/cmd/rpc"
+        path: "app/balance/cmd/rpc"
+        buildpath: "app/balance/cmd"
     ports:
       - "10012:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main grpc:server -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 优惠券 API
+  coupon-api:
+    build:
+      context: .
+      args:
+        path: "app/coupon/cmd/api"
+        buildpath: "app/coupon/cmd"
+    ports:
+      - "10021:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main api -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 优惠券 RPC
+  coupon-rpc:
+    build:
+      context: .
+      args:
+        path: "app/coupon/cmd/rpc"
+        buildpath: "app/coupon/cmd"
+    ports:
+      - "10022:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main grpc:server -f etc/config.yaml
+    networks:
+      - mall-net
+
+
+  # 配送 API
+  delivery-api:
+    build:
+      context: .
+      args:
+        path: "app/delivery/cmd/api"
+        buildpath: "app/delivery/cmd"
+    ports:
+      - "10031:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main api -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 配送 RPC
+  delivery-rpc:
+    build:
+      context: .
+      args:
+        path: "app/delivery/cmd/rpc"
+        buildpath: "app/delivery/cmd"
+    ports:
+      - "10032:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main grpc:server -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 生鲜 API
+  fresh-api:
+    build:
+      context: .
+      args:
+        path: "app/fresh/cmd/api"
+        buildpath: "app/fresh/cmd"
+    ports:
+      - "10041:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main api -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 生鲜 RPC
+  fresh-rpc:
+    build:
+      context: .
+      args:
+        path: "app/fresh/cmd/rpc"
+        buildpath: "app/fresh/cmd"
+    ports:
+      - "10042:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main grpc:server -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 商品 API
+  goods-api:
+    build:
+      context: .
+      args:
+        path: "app/goods/cmd/api"
+        buildpath: "app/goods/cmd"
+    ports:
+      - "10051:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main api -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 商品 RPC
+  goods-rpc:
+    build:
+      context: .
+      args:
+        path: "app/goods/cmd/rpc"
+        buildpath: "app/goods/cmd"
+    ports:
+      - "10052:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main grpc:server -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # IM API
+  im-api:
+    build:
+      context: .
+      args:
+        path: "app/im/cmd/api"
+        buildpath: "app/im/cmd"
+    ports:
+      - "10061:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main api -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # IM RPC
+  im-rpc:
+    build:
+      context: .
+      args:
+        path: "app/im/cmd/rpc"
+        buildpath: "app/im/cmd"
+    ports:
+      - "10062:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main grpc:server -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 分期 API
+  installment-api:
+    build:
+      context: .
+      args:
+        path: "app/installment/cmd/api"
+        buildpath: "app/installment/cmd"
+    ports:
+      - "10071:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main api -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 分期 RPC
+  installment-rpc:
+    build:
+      context: .
+      args:
+        path: "app/installment/cmd/rpc"
+        buildpath: "app/installment/cmd"
+    ports:
+      - "10072:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main grpc:server -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 抽奖 API
+  lottery-api:
+    build:
+      context: .
+      args:
+        path: "app/lottery/cmd/api"
+        buildpath: "app/lottery/cmd"
+    ports:
+      - "10081:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main api -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 抽奖 RPC
+  lottery-rpc:
+    build:
+      context: .
+      args:
+        path: "app/lottery/cmd/rpc"
+        buildpath: "app/lottery/cmd"
+    ports:
+      - "10082:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main grpc:server -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 多商户 API
+  merchants-api:
+    build:
+      context: .
+      args:
+        path: "app/merchants/cmd/api"
+        buildpath: "app/merchants/cmd"
+    ports:
+      - "10091:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main api -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 多商户 RPC
+  merchants-rpc:
+    build:
+      context: .
+      args:
+        path: "app/merchants/cmd/rpc"
+        buildpath: "app/merchants/cmd"
+    ports:
+      - "10092:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main grpc:server -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 订单 API
+  order-api:
+    build:
+      context: .
+      args:
+        path: "app/order/cmd/api"
+        buildpath: "app/order/cmd"
+    ports:
+      - "10101:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main api -f etc/config.yaml
+    networks:
+      - mall-net
+
+
+  # 订单 RPC
+  order-rpc:
+    build:
+      context: .
+      args:
+        path: "app/order/cmd/rpc"
+        buildpath: "app/order/cmd"
+    ports:
+      - "10102:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main grpc:server -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 支付 API
+  payment-api:
+    build:
+      context: .
+      args:
+        path: "app/payment/cmd/api"
+        buildpath: "app/payment/cmd"
+    ports:
+      - "10111:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main api -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 支付 RPC
+  payment-rpc:
+    build:
+      context: .
+      args:
+        path: "app/payment/cmd/rpc"
+        buildpath: "app/payment/cmd"
+    ports:
+      - "10112:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main grpc:server -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 众筹 API
+  raise-api:
+    build:
+      context: .
+      args:
+        path: "app/raise/cmd/api"
+        buildpath: "app/raise/cmd"
+    ports:
+      - "10121:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main api -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 众筹 RPC
+  raise-rpc:
+    build:
+      context: .
+      args:
+        path: "app/raise/cmd/rpc"
+        buildpath: "app/raise/cmd"
+    ports:
+      - "10122:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main grpc:server -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 秒杀 API
+  seconds-api:
+    build:
+      context: .
+      args:
+        path: "app/seconds/cmd/api"
+        buildpath: "app/seconds/cmd"
+    ports:
+      - "10131:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main api -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 秒杀 RPC
+  seconds-rpc:
+    build:
+      context: .
+      args:
+        path: "app/seconds/cmd/rpc"
+        buildpath: "app/seconds/cmd"
+    ports:
+      - "10132:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main grpc:server -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 拼团 API
+  spellgroup-api:
+    build:
+      context: .
+      args:
+        path: "app/spellgroup/cmd/api"
+        buildpath: "app/spellgroup/cmd"
+    ports:
+      - "10141:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main api -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 拼团 RPC
+  spellgroup-rpc:
+    build:
+      context: .
+      args:
+        path: "app/spellgroup/cmd/rpc"
+        buildpath: "app/spellgroup/cmd"
+    ports:
+      - "10142:8080/tcp"
     expose:
       - 8080
     command: ./bin/main grpc:server -f etc/config.yaml
