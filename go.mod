@@ -16,7 +16,7 @@ require (
 	github.com/gorilla/websocket v1.4.2
 	github.com/mix-go/xcli v1.1.20
 	github.com/mix-go/xdi v1.1.16
-	github.com/mix-go/xsql v1.1.7
+	github.com/mix-go/xsql v1.1.8
 	github.com/sirupsen/logrus v1.9.0
 	github.com/spf13/viper v1.12.0
 	go.uber.org/zap v1.21.0
