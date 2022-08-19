@@ -4,6 +4,8 @@ import (
 	"github.com/mix-go/xcli/flag"
 	"github.com/mix-go/xcli/process"
 	"google.golang.org/grpc"
+	"mall-go/app/merchants/cmd/pb"
+	"mall-go/app/merchants/cmd/rpc/services"
 	"mall-go/common/config"
 	"mall-go/common/di"
 	"net"
@@ -46,7 +48,7 @@ func (t *GrpcServerCommand) Main() {
 
 	// server
 	s := grpc.NewServer()
-	//pb.RegisterBalanceServer(s, &services.BalanceService{})
+	pb.RegisterMerchantsServer(s, &services.MerchantsService{})
 
 	// run
 	welcome()

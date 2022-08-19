@@ -4,3 +4,41 @@ package mall.rpc.merchants;
 
 option go_package = "/;pb";
 
+service Merchants {
+  // 加入商户
+  rpc JoinMerchant(JoinMerchantRequest) returns(JoinMerchantResponse) {}
+  // 更新商户信息
+  rpc UpdateMerchant(UpdateMerchantRequest) returns(UpdateMerchantResponse) {}
+  // 关闭商户
+  rpc CloseMerchant(CloseMerchantRequest) returns(CloseMerchantResponse) {}
+}
+
+message JoinMerchantRequest {
+  string shop_name = 1;
+  string shop_logo = 2;
+  string mobile = 3;
+  string address = 4;
+  string remark = 5;
+}
+
+message JoinMerchantResponse {
+  bool status = 1;
+}
+
+message UpdateMerchantRequest {
+  string shop_name = 1;
+  string shop_logo = 2;
+  string mobile = 3;
+  string address = 4;
+  string remark = 5;
+}
+
+message UpdateMerchantResponse {
+  bool status = 1;
+}
+
+message CloseMerchantRequest {}
+
+message CloseMerchantResponse {
+  bool status = 1;
+}
