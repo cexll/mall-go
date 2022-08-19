@@ -2,8 +2,8 @@ FROM golang:1.19-alpine AS builder
 
 LABEL stage=gobuilder
 
-ARG path=app/user/cmd/api
-ARG buildpath=app/user/cmd
+ARG path=/app/user/cmd/api
+
 ENV CGO_ENABLED 0
 ENV GOPROXY https://goproxy.cn,direct
 
@@ -11,14 +11,11 @@ RUN apk update --no-cache && apk add --no-cache tzdata
 
 WORKDIR /build
 
-COPY ${buildpath} /build/${buildpath}
-COPY common /build/common
-COPY go.mod /build/go.mod
-COPY go.sum /build/go.sum
+COPY . .
 
 RUN go mod download
 
-RUN go build -ldflags="-s -w" ./${path}/main.go
+RUN go build -ldflags="-s -w" -o /build .${path}/main.go
 
 
 FROM alpine
@@ -30,7 +27,7 @@ ENV TZ Asia/Shanghai
 ENV APP_DEBUG false
 WORKDIR /app
 
-ARG path=app/user/cmd/api
+ARG path=/app/user/cmd/api
 
 COPY --from=builder /build/main /app/bin/main
 
