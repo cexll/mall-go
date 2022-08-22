@@ -19,6 +19,7 @@ message JoinMerchantRequest {
   string mobile = 3;
   string address = 4;
   string remark = 5;
+  int64 user_id = 6;
 }
 
 message JoinMerchantResponse {
@@ -31,13 +32,17 @@ message UpdateMerchantRequest {
   string mobile = 3;
   string address = 4;
   string remark = 5;
+  int64 user_id = 6;
+  int64 shop_id = 7;
 }
 
 message UpdateMerchantResponse {
   bool status = 1;
 }
 
-message CloseMerchantRequest {}
+message CloseMerchantRequest {
+  int64 shop_id = 1;
+}
 
 message CloseMerchantResponse {
   bool status = 1;
