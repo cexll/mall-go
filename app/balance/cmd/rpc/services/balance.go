@@ -64,3 +64,16 @@ func (t *BalanceService) GetBalance(ctx context.Context, in *pb.GetBalanceReques
 		Frozen:    balance.Frozen,
 	}, nil
 }
+
+func (t *BalanceService) GetBalanceChangeList(ctx context.Context, in *pb.GetBalanceChangeListRequest) (*pb.GetBalanceChangeListResponse, error) {
+	result, err := t.logic.GetBalanceChangeList(in)
+	if err != nil {
+		return nil, grpc.GrpcError(err, 102)
+	}
+
+	return &pb.GetBalanceChangeListResponse{
+		TotalCount: result.TotalCount,
+		TotalPage:  result.TotalPage,
+		List:       result.List,
+	}, nil
+}
