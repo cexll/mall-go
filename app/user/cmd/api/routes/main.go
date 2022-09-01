@@ -38,5 +38,17 @@ func Load(router *gin.Engine) {
 		v1.POST("/logout", func(ctx *gin.Context) {
 			user.Logout(ctx)
 		})
+		// 查询余额
+		v1.POST("/getBalance", func(ctx *gin.Context) {
+			user.GetBalance(ctx)
+		})
+		// 查询余额变动记录
+		v1.POST("/getBalanceChangeList", func(ctx *gin.Context) {
+			user.GetBalanceChangeList(ctx)
+		})
+		// 充值
+		v1.POST("/recharge", func(ctx *gin.Context) {
+			user.Recharge(ctx)
+		})
 	}
 }

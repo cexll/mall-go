@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	balancepb "mall-go/app/balance/cmd/pb"
 	"mall-go/app/user/cmd/api/logic"
 	"mall-go/app/user/cmd/pb"
 	"mall-go/common"
@@ -156,4 +157,56 @@ func (t *UserController) Logout(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, t.resp.Success(resp))
+}
+
+func (t *UserController) GetBalance(c *gin.Context) {
+	userId, err := common.GetUserId(c)
+	if err != nil {
+		c.JSON(http.StatusOK, t.resp.Fail(err.Error()))
+		return
+	}
+	resp, err := t.logic.GetBalance(&balancepb.GetBalanceRequest{
+		UserId: userId,
+		Type:   1,
+	})
+	if err != nil {
+		c.JSON(http.StatusOK, t.resp.Error(err))
+		return
+	}
+
+	c.JSON(http.StatusOK, t.resp.Success(resp))
+}
+
+type GetBalanceChangeListRequest struct {
+	Id         int64 `json:"id" validate:"required"`
+	Type       int32 `json:"type" validate:"min=0"`
+	TypeAmount int32 `json:"type_amount" validate:"min=0"`
+	Page       int32 `json:"page" validate:"required"`
+	PageSize   int32 `json:"page_size" validate:"required"`
+}
+
+func (t *UserController) GetBalanceChangeList(c *gin.Context) {
+	var req GetBalanceChangeListRequest
+	if err := c.Bind(&req); err != nil {
+		c.JSON(http.StatusOK, t.resp.Fail("参数异常"))
+		return
+	}
+
+	resp, err := t.logic.GetBalanceChangeList(&balancepb.GetBalanceChangeListRequest{
+		Id:         req.Id,
+		Type:       req.Type,
+		TypeAmount: req.TypeAmount,
+		Page:       req.Page,
+		PageSize:   req.PageSize,
+	})
+	if err != nil {
+		c.JSON(http.StatusOK, t.resp.Error(err))
+		return
+	}
+
+	c.JSON(http.StatusOK, t.resp.Success(resp))
+}
+
+func (t *UserController) Recharge(c *gin.Context) {
+	// TODO
 }
