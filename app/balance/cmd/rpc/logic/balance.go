@@ -8,6 +8,7 @@ import (
 	"mall-go/app/balance/cmd/rpc/model"
 	"mall-go/common/di"
 	redsync "mall-go/common/lock"
+	"math"
 	"time"
 )
 
@@ -255,24 +256,24 @@ type GetBalanceChangeListResult struct {
 func (t *BalanceLogic) GetBalanceChangeList(in *pb.GetBalanceChangeListRequest) (*GetBalanceChangeListResult, error) {
 	db := di.Gorm()
 	var logs []model.MallBalanceChangeLog
-	db.Where("balance_id = ?", in.Id)
+	db = db.Where("balance_id = ?", in.Id)
 	if in.Type != 0 {
-		db.Where("type = ?", in.Type)
+		db = db.Where("type = ?", in.Type)
 	}
 	if in.TypeAmount != 0 {
-		db.Where("type_amount = ?", in.TypeAmount)
+		db = db.Where("type_amount = ?", in.TypeAmount)
 	}
-	db.Where("is_delete = ?", 0)
+	db = db.Where("is_delete = ?", 0)
 
 	var totalCount int64
-	db.Count(&totalCount)
-	if db.Error != nil {
-		return nil, db.Error
+	err := db.Model(&logs).Count(&totalCount).Error
+	if err != nil {
+		return nil, err
 	}
 
-	db.Limit(int(in.PageSize)).Offset(int(in.Page - 1)).Find(&logs)
-	if db.Error != nil {
-		return nil, db.Error
+	err = db.Limit(int(in.PageSize)).Offset(int(in.Page - 1)).Find(&logs).Error
+	if err != nil {
+		return nil, err
 	}
 
 	var list []*pb.GetBalanceChangeListResponseList
@@ -288,8 +289,9 @@ func (t *BalanceLogic) GetBalanceChangeList(in *pb.GetBalanceChangeListRequest) 
 		})
 	}
 
+	totalPage := math.Ceil(float64(totalCount) / float64(in.PageSize))
 	return &GetBalanceChangeListResult{
-		TotalPage:  int64(int(totalCount / int64(in.PageSize))),
+		TotalPage:  int64(totalPage),
 		TotalCount: totalCount,
 		List:       list,
 	}, nil
