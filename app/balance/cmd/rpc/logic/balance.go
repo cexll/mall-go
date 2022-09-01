@@ -43,6 +43,16 @@ func (t *BalanceLogic) SubFrozenBalance(in *pb.SubFrozenBalanceRequest) (bool, e
 		return false, nil
 	}
 
+	_ = t.createBalanceLog(&model.MallBalanceChangeLog{
+		BalanceId:    in.Id,
+		Amount:       int64(in.Amount),
+		BeforeAmount: int64(balance.Frozen - in.Amount),
+		AfterAmount:  int64(balance.Frozen),
+		Type:         model.TypeIncrease,
+		TypeAmount:   model.TypeAmountFreeze,
+		Desc:         in.Desc,
+	})
+
 	return true, nil
 }
 
@@ -89,6 +99,16 @@ func (t *BalanceLogic) ReduceFrozenBalance(in *pb.ReduceFrozenBalanceRequest) (b
 		return false, nil
 	}
 
+	_ = t.createBalanceLog(&model.MallBalanceChangeLog{
+		BalanceId:    in.Id,
+		Amount:       int64(in.Amount),
+		BeforeAmount: int64(balance.Frozen + in.Amount),
+		AfterAmount:  int64(balance.Frozen),
+		Type:         model.TypeReduce,
+		TypeAmount:   model.TypeAmountFreeze,
+		Desc:         in.Desc,
+	})
+
 	return true, nil
 }
 
@@ -119,6 +139,16 @@ func (t *BalanceLogic) SubBalance(in *pb.SubBalanceRequest) (bool, error) {
 	if rows == 0 {
 		return false, nil
 	}
+
+	_ = t.createBalanceLog(&model.MallBalanceChangeLog{
+		BalanceId:    in.Id,
+		Amount:       int64(in.Amount),
+		BeforeAmount: int64(balance.Available + in.Amount),
+		AfterAmount:  int64(balance.Available),
+		Type:         model.TypeIncrease,
+		TypeAmount:   model.TypeAvailable,
+		Desc:         in.Desc,
+	})
 
 	return true, nil
 }
@@ -161,6 +191,16 @@ func (t *BalanceLogic) ReduceBalance(in *pb.ReduceBalanceRequest) (bool, error) 
 	if rows == 0 {
 		return false, nil
 	}
+
+	_ = t.createBalanceLog(&model.MallBalanceChangeLog{
+		BalanceId:    in.Id,
+		Amount:       int64(in.Amount),
+		BeforeAmount: int64(balance.Available + in.Amount),
+		AfterAmount:  int64(balance.Available),
+		Type:         model.TypeReduce,
+		TypeAmount:   model.TypeAvailable,
+		Desc:         in.Desc,
+	})
 
 	return true, nil
 }
@@ -211,6 +251,7 @@ type GetBalanceChangeListResult struct {
 	TotalCount int64
 }
 
+// GetBalanceChangeList 获取余额变动记录
 func (t *BalanceLogic) GetBalanceChangeList(in *pb.GetBalanceChangeListRequest) (*GetBalanceChangeListResult, error) {
 	db := di.Gorm()
 	var logs []model.MallBalanceChangeLog
@@ -223,15 +264,17 @@ func (t *BalanceLogic) GetBalanceChangeList(in *pb.GetBalanceChangeListRequest) 
 	}
 	db.Where("is_delete = ?", 0)
 
-	db.Limit(int(in.PageSize)).Offset(int(in.Page - 1)).Find(&logs)
-	if db.Error != nil {
-		return nil, db.Error
-	}
 	var totalCount int64
 	db.Count(&totalCount)
 	if db.Error != nil {
 		return nil, db.Error
 	}
+
+	db.Limit(int(in.PageSize)).Offset(int(in.Page - 1)).Find(&logs)
+	if db.Error != nil {
+		return nil, db.Error
+	}
+
 	var list []*pb.GetBalanceChangeListResponseList
 	for _, v := range logs {
 		list = append(list, &pb.GetBalanceChangeListResponseList{
@@ -244,9 +287,20 @@ func (t *BalanceLogic) GetBalanceChangeList(in *pb.GetBalanceChangeListRequest) 
 			CreatedAt:    v.CreatedAt.Local().Format("2006-01-02 15:01:05"),
 		})
 	}
+
 	return &GetBalanceChangeListResult{
 		TotalPage:  int64(int(totalCount / int64(in.PageSize))),
 		TotalCount: totalCount,
 		List:       list,
 	}, nil
+}
+
+// createBalanceLog 创建余额变动记录
+func (t *BalanceLogic) createBalanceLog(log *model.MallBalanceChangeLog) error {
+	db := di.Gorm()
+	err := db.Create(log).Error
+	if err != nil {
+		return err
+	}
+	return nil
 }
