@@ -11,6 +11,8 @@ service Merchants {
   rpc UpdateMerchant(UpdateMerchantRequest) returns(UpdateMerchantResponse) {}
   // 关闭商户
   rpc CloseMerchant(CloseMerchantRequest) returns(CloseMerchantResponse) {}
+  // 查询商户
+  rpc GetMerchant(GetMerchantRequest) returns(GetMerchantResponse) {}
 }
 
 message JoinMerchantRequest {
@@ -46,4 +48,21 @@ message CloseMerchantRequest {
 
 message CloseMerchantResponse {
   bool status = 1;
+}
+
+message GetMerchantRequest {
+  int64 user_id = 1;
+}
+
+message GetMerchantResponse {
+  int64 id = 1;
+  int64 user_id = 2;
+  string shop_name = 3;
+  string shop_logo = 4;
+  string mobile = 5;
+  string address = 6;
+  string remark = 7;
+  int32 sort = 8;
+  int32 is_hide = 9;
+  int64 status = 10;
 }

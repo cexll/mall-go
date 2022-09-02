@@ -18,6 +18,10 @@ func Load(router *gin.Engine) {
 	merchant := controllers.MerchantsController{}
 	r := router.Group("/merchant")
 	{
+		// 查询商户信息
+		r.POST("/getMerchant", func(c *gin.Context) {
+			merchant.GetMerchant(c)
+		})
 		// 加入商户
 		r.POST("/join", func(c *gin.Context) {
 			merchant.JoinMerchant(c)

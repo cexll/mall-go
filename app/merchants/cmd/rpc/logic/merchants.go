@@ -2,6 +2,7 @@ package logic
 
 import (
 	"errors"
+	"gorm.io/gorm"
 	"mall-go/app/merchants/cmd/pb"
 	"mall-go/app/merchants/cmd/rpc/model"
 	"mall-go/common/di"
@@ -15,29 +16,30 @@ func (l *MerchantsLogic) JoinMerchant(in *pb.JoinMerchantRequest) (bool, error) 
 	// 查询是否存在
 	var merchant model.MallMerchant
 	db := di.Gorm()
-	if err := db.First(&merchant, "mobile = ?", in.Mobile).Error; err != nil {
-		return false, err
+	err := db.First(&merchant, "mobile = ? AND user_id = ?", in.Mobile, in.UserId).Error
+	if err == gorm.ErrRecordNotFound {
+		merchant.UserId = in.UserId
+		merchant.ShopName = in.ShopName
+		merchant.ShopLogo = in.ShopLogo
+		merchant.Mobile = in.Mobile
+		address := in.Address
+		merchant.Address = address
+		merchant.Remark = in.Remark
+		merchant.Sort = 1
+		merchant.IsHide = 0
+		merchant.Status = 3
+		merchant.CreatedAt = time.Now()
+		if err = db.Create(&merchant).Error; err != nil {
+			return false, err
+		}
+		return true, nil
 	}
 
 	if merchant.ID != 0 {
-		return false, errors.New("手机号已绑定商户")
+		return false, errors.New("已经申请入驻了")
 	}
 
-	merchant.UserId = in.UserId
-	merchant.ShopName = in.ShopName
-	merchant.ShopLogo = in.ShopLogo
-	merchant.Mobile = in.Mobile
-	address := in.Address
-	merchant.Address = address
-	merchant.Remark = in.Remark
-	merchant.Sort = 1
-	merchant.IsHide = 0
-	merchant.Status = 3
-	merchant.CreatedAt = time.Now()
-	if err := db.Create(&merchant).Error; err != nil {
-		return false, err
-	}
-	return true, nil
+	return false, err
 }
 
 func (l *MerchantsLogic) UpdateMerchant(in *pb.UpdateMerchantRequest) (bool, error) {
@@ -80,4 +82,13 @@ func (l *MerchantsLogic) CloseMerchant(in *pb.CloseMerchantRequest) (bool, error
 	}
 
 	return true, nil
+}
+
+func (l *MerchantsLogic) GetMerchant(in *pb.GetMerchantRequest) (*model.MallMerchant, error) {
+	var merchant model.MallMerchant
+	db := di.Gorm()
+	if err := db.First(&merchant, "user_id = ?", in.UserId).Error; err != nil {
+		return nil, err
+	}
+	return &merchant, nil
 }

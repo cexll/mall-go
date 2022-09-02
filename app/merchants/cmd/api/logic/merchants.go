@@ -47,6 +47,18 @@ func (t *MerchantsLogic) CloseMerchant(in *pb.CloseMerchantRequest) (*pb.CloseMe
 	return resp, nil
 }
 
+func (t *MerchantsLogic) GetMerchant(in *pb.GetMerchantRequest) (*pb.GetMerchantResponse, error) {
+	cli, err := t.grpcService.NewMerchantsRpcClient()
+	if err != nil {
+		return nil, err
+	}
+	resp, err := cli.GetMerchant(context.Background(), in)
+	if err != nil {
+		return nil, err
+	}
+	return resp, nil
+}
+
 type GetBalanceResponse struct {
 	Id        int64  `json:"id"`
 	UserId    int64  `json:"user_id"`
