@@ -178,7 +178,6 @@ func (t *UserController) GetBalance(c *gin.Context) {
 }
 
 type GetBalanceChangeListRequest struct {
-	Id         int64 `json:"id" validate:"required"`
 	Type       int32 `json:"type" validate:"min=0"`
 	TypeAmount int32 `json:"type_amount" validate:"min=0"`
 	Page       int32 `json:"page" validate:"required"`
@@ -186,6 +185,19 @@ type GetBalanceChangeListRequest struct {
 }
 
 func (t *UserController) GetBalanceChangeList(c *gin.Context) {
+	userId, err := common.GetUserId(c)
+	if err != nil {
+		c.JSON(http.StatusOK, t.resp.Fail(err.Error()))
+		return
+	}
+	balance, err := t.logic.GetBalance(&balancepb.GetBalanceRequest{
+		UserId: userId,
+		Type:   1,
+	})
+	if err != nil {
+		c.JSON(http.StatusOK, t.resp.Error(err))
+		return
+	}
 	var req GetBalanceChangeListRequest
 	if err := c.Bind(&req); err != nil {
 		c.JSON(http.StatusOK, t.resp.Fail("参数异常"))
@@ -193,7 +205,7 @@ func (t *UserController) GetBalanceChangeList(c *gin.Context) {
 	}
 
 	resp, err := t.logic.GetBalanceChangeList(&balancepb.GetBalanceChangeListRequest{
-		Id:         req.Id,
+		Id:         balance.Id,
 		Type:       req.Type,
 		TypeAmount: req.TypeAmount,
 		Page:       req.Page,
