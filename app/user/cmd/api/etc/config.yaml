@@ -6,5 +6,3 @@ API:
 
 JWT:
   HmacSecret: mall-go
-
-
