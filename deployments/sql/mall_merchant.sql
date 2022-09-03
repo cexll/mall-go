@@ -11,7 +11,7 @@
  Target Server Version : 50730
  File Encoding         : 65001
 
- Date: 19/08/2022 16:31:07
+ Date: 03/09/2022 16:33:46
 */
 
 SET NAMES utf8mb4;
@@ -31,10 +31,10 @@ CREATE TABLE `mall_merchant`  (
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '店铺描述',
   `sort` int(1) NOT NULL COMMENT '店铺排序',
   `is_hide` tinyint(1) NOT NULL COMMENT '是否隐藏',
-  `status` tinyint(1) NOT NULL COMMENT '店铺状态 \r\n1 正常\r\n2 禁用\r\n3 审核中\r\n4 审核拒绝',
+  `status` tinyint(1) NOT NULL COMMENT '店铺状态 \r\n1 正常\r\n2 禁用\r\n3 审核中\r\n4 审核拒绝\r\n5 关闭店铺',
   `created_at` datetime(0) NOT NULL,
   `updated_at` datetime(0) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商户表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商户表' ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
