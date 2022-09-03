@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+package mall.rpc.community;
+
+option go_package = "/;pb";
+
