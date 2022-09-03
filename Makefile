@@ -1,6 +1,6 @@
 
 
-default: user-api user-rpc balance-api balance-rpc coupon-api coupon-rpc delivery-api delivery-rpc fresh-api fresh-rpc goods-api goods-rpc im-api im-rpc installment-api installment-rpc lottery-api lottery-rpc merchants-api merchants-rpc order-api order-rpc payment-api payment-rpc raise-api raise-rpc seconds-api seconds-rpc spellgroup-api spellgroup-rpc
+default: user-api user-rpc balance-api balance-rpc coupon-api coupon-rpc delivery-api delivery-rpc fresh-api fresh-rpc goods-api goods-rpc im-api im-rpc installment-api installment-rpc lottery-api lottery-rpc merchants-api merchants-rpc order-api order-rpc payment-api payment-rpc raise-api raise-rpc seconds-api seconds-rpc spellgroup-api spellgroup-rpc community-api community-rpc
 
 user-api:
 	# 编译 user-api
@@ -106,6 +106,13 @@ spellgroup-api:
 spellgroup-rpc:
 	# 编译 spellgroup-rpc
 	go build -ldflags="-s -w" -o build/spellgroup-rpc app/spellgroup/cmd/rpc/main.go
+
+community-api:
+	# 编译 spellgroup-api
+	go build -ldflags="-s -w" -o build/community-api app/community/cmd/api/main.go
+community-rpc:
+	# 编译 spellgroup-rpc
+	go build -ldflags="-s -w" -o build/community-rpc app/community/cmd/rpc/main.go
 
 
 

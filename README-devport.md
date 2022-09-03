@@ -20,3 +20,4 @@ service port
 | raise        | 10121                  | 10122                  |                          |
 | seconds      | 10131                  | 10132                  |                          |
 | spellgroup   | 10141                  | 10142                  |                          |
+| community    | 10151                  | 10152                  |                          |

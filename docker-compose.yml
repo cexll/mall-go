@@ -425,6 +425,34 @@ services:
     networks:
       - mall-net
 
+  # 社区 API
+  community-api:
+    build:
+      context: .
+      args:
+        path: "/app/community/cmd/api"
+    ports:
+      - "10151:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main api -f etc/config.yaml
+    networks:
+      - mall-net
+
+  # 社区 RPC
+  community-rpc:
+    build:
+      context: .
+      args:
+        path: "/app/community/cmd/rpc"
+    ports:
+      - "10152:8080/tcp"
+    expose:
+      - 8080
+    command: ./bin/main grpc:server -f etc/config.yaml
+    networks:
+      - mall-net
+
 networks:
   mall-net:
     driver: bridge
