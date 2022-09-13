@@ -4,13 +4,13 @@
 
 既然是开源项目肯定所有的技术都得用最新的mixgo脚手架 微服务 容器部署 DTM分布式事务 等等 (不定时填坑
 # 使用技术
-- gin
-- grpc
+- gin、hertz
+- grpc、kitex
 - redis
 - mysql
 - mongodb
 - asynq(其他替代 go-queue)
-- es(其他替代 gofound, zinc)
+- es(其他替代 gofound， zinc)
 - prometheus
 - grafana
 - jaeger
@@ -19,7 +19,7 @@
 - wechat/alipay
 - zap
 - viper
-- docker/docker-compose
+- docker/docker-compose/k8s
 
 # 业务功能
 - 分期
@@ -30,36 +30,21 @@
 - 配送
 - 生鲜
 - 优惠券
-- 会员
-- 多商户
-- saas
+- [x] 会员
+  - TODO 充值
+- [x] 多商户
+  - TODO 提现
+- SAAS
 - 二手交易
 - 社区
-  - 文字/图文/视频
-  - 话题讨论
 - IM
 - 直播
 - 悬赏
+- [x] 余额
+
 
 # 项目简介
-项目基于mixgo搭建脚手架, 因为是挖坑所以得一个一个填
-- [x] 会员
-  - TODO 充值
-- [x] 余额
-- [x] 多商户
-  - TODO 提现
-- [ ] 社区
-- [ ] 商城
-- [ ] 拼团
-- [ ] 众筹
-- [ ] 秒杀
-- [ ] 生鲜
-- [ ] 优惠券
-- [ ] 抽奖
-- [ ] 分期
-- [ ] 配送
-- [ ] IM
-- [ ] ...
+项目基于mixgo搭建脚手架，可实现灵活拼装组件，现目前为客户端api接口，暂不会实现admin相关代码
 
 # 目录介绍
 
