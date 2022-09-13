@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 50730
  Source Host           : localhost:3306
- Source Schema         : mall_go
+ Source Schema         : mall_go_merchants
 
  Target Server Type    : MySQL
  Target Server Version : 50730
  File Encoding         : 65001
 
- Date: 03/09/2022 16:33:46
+ Date: 13/09/2022 15:08:12
 */
 
 SET NAMES utf8mb4;
