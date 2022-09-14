@@ -2,17 +2,13 @@ package commands
 
 import (
 	"context"
-	"fmt"
-	"github.com/gin-gonic/gin"
+	"github.com/cloudwego/hertz/pkg/app"
+	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/mix-go/xcli/flag"
 	"github.com/mix-go/xcli/process"
 	"mall-go/app/community/cmd/api/routes"
 	"mall-go/common/config"
 	"mall-go/common/di"
-	"os"
-	"os/signal"
-	"strings"
-	"syscall"
 	"time"
 )
 
@@ -25,48 +21,33 @@ func (t *APICommand) Main() {
 	}
 
 	logger := di.Zap()
-	server := di.Server()
+
 	addr := config.Conf.API.GinAddr
 	mode := config.Conf.API.GinMode
+	s := server.Default(
+		server.WithHostPorts(addr),
+		server.WithExitWaitTime(3*time.Second))
 
-	// server
-	gin.SetMode(mode)
-	router := gin.New()
-	if mode != gin.ReleaseMode {
-		handlerFunc := gin.LoggerWithConfig(gin.LoggerConfig{
-			Formatter: func(params gin.LogFormatterParams) string {
-				return fmt.Sprintf("%s|%s|%d|%s\n",
-					params.Method,
-					params.Path,
-					params.StatusCode,
-					params.ClientIP,
-				)
-			},
-			Output: &di.ZapOutput{Logger: logger},
+	if mode != "release" {
+		s.Use(func(c context.Context, ctx *app.RequestContext) {
+			start := time.Now()
+			ctx.Next(c)
+			end := time.Now()
+			latency := end.Sub(start).Microseconds
+			logger.Infof("status=%d cost=%d method=%s full_path=%s client_ip=%s host=%s",
+				ctx.Response.StatusCode(), latency(), ctx.Request.Header.Method(), ctx.Request.URI().PathOriginal(), ctx.ClientIP(), ctx.Request.Host())
 		})
-		router.Use(handlerFunc)
 	}
-	routes.Load(router)
 
-	server.Addr = addr
-	server.Handler = router
+	routes.Load(s)
 
-	// signal
-	ch := make(chan os.Signal)
-	signal.Notify(ch, syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM)
-	go func() {
-		<-ch
+	s.Engine.OnShutdown = append(s.Engine.OnShutdown, func(ctx context.Context) {
 		logger.Info("Server shutdown")
-		ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
-		if err := server.Shutdown(ctx); err != nil {
-			logger.Errorf("Server shutdown error: %s", err)
-		}
-	}()
+	})
 
 	// run
 	welcome()
-	logger.Infof("Server start at %s", server.Addr)
-	if err := server.ListenAndServe(); err != nil && !strings.Contains(err.Error(), "http: Server closed") {
-		panic(err)
-	}
+	logger.Infof("Server start at %s", addr)
+
+	s.Spin()
 }
