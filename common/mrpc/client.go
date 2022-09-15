@@ -1,9 +1,10 @@
-package grpc
+package mrpc
 
 import (
 	"context"
 	"errors"
 	"fmt"
+	"mall-go/common/config"
 	"strings"
 	"time"
 
@@ -37,6 +38,10 @@ type (
 	client struct {
 		conn *grpc.ClientConn
 	}
+
+	RpcClient struct {
+		client Client
+	}
 )
 
 // NewClient returns a Client.
@@ -54,8 +59,29 @@ func NewClient(target string, opts ...ClientOption) (Client, error) {
 	return &cli, nil
 }
 
+func MustNewClient(c config.RpcClientConf, options ...ClientOption) Client {
+	var opts []ClientOption
+
+	if c.Timeout > 0 {
+		opts = append(opts, WithTimeout(time.Duration(c.Timeout)*time.Millisecond))
+	}
+	opts = append(opts, options...)
+	var cli client
+	if err := cli.dial(c.Addr, opts...); err != nil {
+		return nil
+	}
+
+	return &RpcClient{
+		client: &cli,
+	}
+}
+
 func (c *client) Conn() *grpc.ClientConn {
 	return c.conn
+}
+
+func (rc *RpcClient) Conn() *grpc.ClientConn {
+	return rc.client.Conn()
 }
 
 func (c *client) buildDialOptions(opts ...ClientOption) []grpc.DialOption {
