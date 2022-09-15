@@ -1,4 +1,6 @@
-# GRPC 配置
+# MRpc
+
+参考 zrpc 同属 grpc 
 
 配置要素
 

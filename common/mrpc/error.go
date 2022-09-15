@@ -1,9 +1,9 @@
-package grpc
+package mrpc
 
 import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"mall-go/common/grpc/pb"
+	"mall-go/common/mrpc/pb"
 )
 
 func GrpcError(rpcError error, errCode int32) error {

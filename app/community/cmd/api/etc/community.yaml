@@ -1,0 +1,6 @@
+Api:
+  Addr: :8080
+  Mode: release
+
+JwtAuth:
+  Secret: mall-go

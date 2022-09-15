@@ -1,4 +1,4 @@
-package grpc
+package mrpc
 
 var (
 	UserGRPCAddr      = "user-rpc:8080"

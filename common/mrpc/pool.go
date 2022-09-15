@@ -1,4 +1,4 @@
-package grpc
+package mrpc
 
 import (
 	"context"
@@ -11,24 +11,24 @@ import (
 
 var (
 	// ErrClosed is the error when the client pool is closed
-	ErrClosed = errors.New("grpc pool: client pool is closed")
+	ErrClosed = errors.New("mrpc pool: client pool is closed")
 	// ErrTimeout is the error when the client pool timed out
-	ErrTimeout = errors.New("grpc pool: client pool timed out")
+	ErrTimeout = errors.New("mrpc pool: client pool timed out")
 	// ErrAlreadyClosed is the error when the client conn was already closed
-	ErrAlreadyClosed = errors.New("grpc pool: the connection was already closed")
+	ErrAlreadyClosed = errors.New("mrpc pool: the connection was already closed")
 	// ErrFullPool is the error when the pool is already full
-	ErrFullPool = errors.New("grpc pool: closing a ClientConn into a full pool")
+	ErrFullPool = errors.New("mrpc pool: closing a ClientConn into a full pool")
 )
 
-// Factory is a function type creating a grpc client
+// Factory is a function type creating a mrpc client
 type Factory func() (*grpc.ClientConn, error)
 
-// FactoryWithContext is a function type creating a grpc client
+// FactoryWithContext is a function type creating a mrpc client
 // that accepts the context parameter that could be passed from
 // Get or NewWithContext method.
 type FactoryWithContext func(context.Context) (*grpc.ClientConn, error)
 
-// Pool is the grpc client pool
+// Pool is the mrpc client pool
 type Pool struct {
 	clients         chan ClientConn
 	factory         FactoryWithContext
@@ -37,7 +37,7 @@ type Pool struct {
 	mu              sync.RWMutex
 }
 
-// ClientConn is the wrapper for a grpc client conn
+// ClientConn is the wrapper for a mrpc client conn
 type ClientConn struct {
 	*grpc.ClientConn
 	pool          *Pool

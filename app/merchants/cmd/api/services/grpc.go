@@ -3,7 +3,7 @@ package services
 import (
 	balancepb "mall-go/app/balance/cmd/pb"
 	"mall-go/app/merchants/cmd/pb"
-	"mall-go/common/grpc"
+	"mall-go/common/mrpc"
 )
 
 type GRPCService struct {
@@ -11,7 +11,7 @@ type GRPCService struct {
 
 // NewBalanceRpcClient 创建一个BalanceRPC 连接
 func (t GRPCService) NewBalanceRpcClient() (balancepb.BalanceClient, error) {
-	balance, err := grpc.NewClient(grpc.BalanceGRPCAddr, func(options *grpc.ClientOptions) {})
+	balance, err := mrpc.NewClient(mrpc.BalanceGRPCAddr, func(options *mrpc.ClientOptions) {})
 	if err != nil {
 		return nil, err
 	}
@@ -20,7 +20,7 @@ func (t GRPCService) NewBalanceRpcClient() (balancepb.BalanceClient, error) {
 
 // NewMerchantsRpcClient 创建一个 MerchantsRPC 连接
 func (t GRPCService) NewMerchantsRpcClient() (pb.MerchantsClient, error) {
-	merchants, err := grpc.NewClient(grpc.MerchantsGRPCAddr, func(options *grpc.ClientOptions) {})
+	merchants, err := mrpc.NewClient(mrpc.MerchantsGRPCAddr, func(options *mrpc.ClientOptions) {})
 	if err != nil {
 		return nil, err
 	}

@@ -4,3 +4,78 @@ package mall.rpc.community;
 
 option go_package = "/;pb";
 
+
+service Community {
+  // 文章列表
+  rpc GetPostList(GetPostListRequest) returns(GetPostListResponse) {}
+  // 文章详情
+  rpc GetPostDetail(GetPostDetailRequest) returns(GetPostDetailResponse) {}
+  // 发布文章
+  rpc PushPost(PushPostRequest) returns(PushPostResponse) {}
+  // 编辑文章
+  rpc SetPost(SetPostRequest) returns(SetPostResponse) {}
+  // 删除文章
+  rpc DeletePost(DeletePostRequest) returns(DeletePostResponse) {}
+  // 评论列表
+  rpc GetCommentList(GetCommentListRequest) returns(GetCommentListResponse) {}
+  // 添加评论
+  rpc AddComment(AddCommentRequest) returns(AddCommentResponse) {}
+  // 回复评论
+  rpc ReplyComment(ReplyCommentRequest) returns(ReplyCommentResponse) {}
+  // 删除评论
+  rpc DeleteComment(DeleteCommentRequest) returns(DeleteCommentResponse) {}
+  // 文章收藏
+  rpc CollectPost(CollectPostRequest) returns(CollectPostResponse) {}
+  // 文章收藏列表
+  rpc GetCollectPostList(GetCollectPostListRequest) returns(GetCollectPostListResponse) {}
+  // 文章点赞
+  rpc StarPost(StarPostRequest) returns(StarPostResponse) {}
+  // 文章点赞列表
+  rpc GetStarPostList(GetStarPostListRequest) returns(GetStarPostListResponse) {}
+}
+
+message GetPostListRequest {
+  // 推荐列表
+  // 关注列表
+  // 我的发布
+}
+message GetPostListResponse {}
+
+message GetPostDetailRequest {}
+message GetPostDetailResponse {}
+
+message PushPostRequest {}
+message PushPostResponse {}
+
+message SetPostRequest {}
+message SetPostResponse {}
+
+message DeletePostRequest {}
+message DeletePostResponse {}
+
+message GetCommentListRequest {}
+message GetCommentListResponse {}
+
+message AddCommentRequest {}
+message AddCommentResponse {}
+
+message ReplyCommentRequest {}
+message ReplyCommentResponse {}
+
+message DeleteCommentRequest {}
+message DeleteCommentResponse {}
+
+message CollectPostRequest {}
+message CollectPostResponse {}
+
+message GetCollectPostListRequest {}
+message GetCollectPostListResponse {}
+
+message StarPostRequest {}
+message StarPostResponse {}
+
+message GetStarPostListRequest {}
+message GetStarPostListResponse {}
+
+
+

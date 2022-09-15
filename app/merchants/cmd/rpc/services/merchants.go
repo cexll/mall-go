@@ -4,7 +4,7 @@ import (
 	"context"
 	"mall-go/app/merchants/cmd/pb"
 	"mall-go/app/merchants/cmd/rpc/logic"
-	"mall-go/common/grpc"
+	"mall-go/common/mrpc"
 )
 
 type MerchantsService struct {
@@ -14,7 +14,7 @@ type MerchantsService struct {
 func (m *MerchantsService) GetMerchant(c context.Context, in *pb.GetMerchantRequest) (*pb.GetMerchantResponse, error) {
 	merchant, err := m.logic.GetMerchant(in)
 	if err != nil {
-		return nil, grpc.GrpcError(err, 201)
+		return nil, mrpc.GrpcError(err, 201)
 	}
 	return &pb.GetMerchantResponse{
 		Id:       merchant.ID,
@@ -31,7 +31,7 @@ func (m *MerchantsService) GetMerchant(c context.Context, in *pb.GetMerchantRequ
 func (m *MerchantsService) JoinMerchant(c context.Context, in *pb.JoinMerchantRequest) (*pb.JoinMerchantResponse, error) {
 	status, err := m.logic.JoinMerchant(in)
 	if err != nil {
-		return nil, grpc.GrpcError(err, 201)
+		return nil, mrpc.GrpcError(err, 201)
 	}
 	return &pb.JoinMerchantResponse{
 		Status: status,
@@ -41,7 +41,7 @@ func (m *MerchantsService) JoinMerchant(c context.Context, in *pb.JoinMerchantRe
 func (m *MerchantsService) UpdateMerchant(c context.Context, in *pb.UpdateMerchantRequest) (*pb.UpdateMerchantResponse, error) {
 	status, err := m.logic.UpdateMerchant(in)
 	if err != nil {
-		return nil, grpc.GrpcError(err, 201)
+		return nil, mrpc.GrpcError(err, 201)
 	}
 
 	return &pb.UpdateMerchantResponse{
@@ -52,7 +52,7 @@ func (m *MerchantsService) UpdateMerchant(c context.Context, in *pb.UpdateMercha
 func (m *MerchantsService) CloseMerchant(c context.Context, in *pb.CloseMerchantRequest) (*pb.CloseMerchantResponse, error) {
 	status, err := m.logic.CloseMerchant(in)
 	if err != nil {
-		return nil, grpc.GrpcError(err, 201)
+		return nil, mrpc.GrpcError(err, 201)
 	}
 
 	return &pb.CloseMerchantResponse{

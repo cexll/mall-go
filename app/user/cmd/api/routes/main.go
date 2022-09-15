@@ -9,7 +9,6 @@ import (
 )
 
 func Load(router *gin.Engine) {
-
 	// register validate
 	binding.Validator = new(validator2.DefaultValidator)
 
