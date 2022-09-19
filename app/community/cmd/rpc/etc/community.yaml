@@ -1,0 +1,14 @@
+Name: community-rpc
+Mode: release
+Addr: ":10152"
+Timeout: 60
+
+DbConf:
+  DSN: root:root@tcp(host.docker.internal:3306)/mall_go_community?charset=utf8&loc=Asia%2FShanghai&parseTime=true&timeout=10s
+
+RedisConf:
+  Addr: "host.docker.internal:6379"
+  Pass:
+  DataBase: 0
+  Timeout: 60
+

@@ -1,6 +1,0 @@
-syntax = "proto3";
-
-package mall.rpc.payment;
-
-option go_package = "/;pb";
-

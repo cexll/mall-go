@@ -7,11 +7,11 @@ import (
 	"github.com/bytedance/gopkg/util/logger"
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
-	"mall-go/app/community/cmd/api/intenel/config"
-	"mall-go/app/community/cmd/api/intenel/handler"
-	"mall-go/app/community/cmd/api/intenel/svc"
-	conf "mall-go/common/config"
-	_ "mall-go/common/di"
+	"mall-go/app/community/cmd/api/internal/config"
+	"mall-go/app/community/cmd/api/internal/handler"
+	"mall-go/app/community/cmd/api/internal/svc"
+	conf "mall-go/common/conf"
+	_ "mall-go/pkg/di"
 	"time"
 )
 
@@ -25,13 +25,14 @@ func main() {
 	if err := conf.MustLoad(*configFile, &c); err != nil {
 		panic(err)
 	}
+
 	svc.Context = svc.NewServiceContext(c)
 
 	s := server.Default(
-		server.WithHostPorts(c.Api.Addr),
+		server.WithHostPorts(c.Addr),
 		server.WithExitWaitTime(3*time.Second))
 
-	if c.Api.Mode != "release" {
+	if c.Mode != "release" {
 		s.Use(func(c context.Context, ctx *app.RequestContext) {
 			start := time.Now()
 			ctx.Next(c)

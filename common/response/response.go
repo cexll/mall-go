@@ -2,7 +2,7 @@ package response
 
 import (
 	"google.golang.org/grpc/status"
-	"mall-go/common/mrpc/pb"
+	"mall-go/common/errcode/pb"
 	"net/http"
 )
 

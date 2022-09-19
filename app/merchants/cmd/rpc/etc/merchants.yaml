@@ -1,0 +1,14 @@
+Name: merchants-rpc
+Addr: ":10092"
+Mode: "release"
+
+RedisConf:
+  Addr: 127.0.0.1:6379
+  Password:
+  DataBase: 1
+  Timeout: 60
+
+
+DbConf:
+  # host.docker.internal
+  DSN: root:root@tcp(127.0.0.1:3306)/mall_go_merchants?charset=utf8&loc=Asia%2FShanghai&parseTime=true&timeout=10s

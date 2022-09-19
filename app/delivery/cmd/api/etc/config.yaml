@@ -1,7 +1,0 @@
-APPDEBUG: true
-
-API:
-  GinAddr: :8080
-  GinMode: debug
-
-HmacSecret: mall-go

@@ -1,0 +1,12 @@
+Name: user-api
+Addr: ":10001"
+Mode: "release"
+
+UserRpcConf:
+  Target: "127.0.0.1:10002"
+
+BalanceRpcConf:
+  Target: "127.0.0.1:10012"
+
+JwtAuth:
+  Secret: mall-go

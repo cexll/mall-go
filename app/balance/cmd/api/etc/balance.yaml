@@ -1,0 +1,7 @@
+Name: balance-api
+Addr: ":10011"
+Mode: "release"
+
+
+JwtAuth:
+  Secret: mall-go

@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-package mall.rpc.delivery;
-
-option go_package = "/;pb";
-option php_metadata_namespace = "Mall/Rpc/Delivery/GPBMetadata";
-

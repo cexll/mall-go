@@ -1,0 +1,13 @@
+Name: balance-rpc
+Addr: ":10012"
+Mode: "release"
+
+RedisConf:
+  Addr: 127.0.0.1:6379
+  Pass:
+  DataBase: 0
+  Timeout: 60
+
+DbConf:
+  # host.docker.internal
+  DSN: root:root@tcp(127.0.0.1:3306)/mall_go_balance?charset=utf8&loc=Asia%2FShanghai&parseTime=true&timeout=10s

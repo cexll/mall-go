@@ -1,15 +1,38 @@
 package main
 
 import (
-	"github.com/mix-go/xcli"
-	"mall-go/app/merchants/cmd/rpc/commands"
-	"mall-go/common/config"
-	_ "mall-go/common/di"
+	"flag"
+	"github.com/go-ll/mrpc"
+	"google.golang.org/grpc"
+	"mall-go/app/merchants/cmd/pb"
+	"mall-go/app/merchants/cmd/rpc/internal/config"
+	"mall-go/app/merchants/cmd/rpc/internal/server"
+	"mall-go/app/merchants/cmd/rpc/internal/svc"
+	conf "mall-go/common/conf"
+	_ "mall-go/pkg/di"
 )
 
+var configFile = flag.String("f", "etc/merchants.yaml", "the config file")
+
 func main() {
-	xcli.SetName("app").
-		SetVersion("0.0.0-alpha").
-		SetDebug(config.Conf.APPDEBUG)
-	xcli.AddCommand(commands.Commands...).Run()
+	flag.Parse()
+
+	var c config.Config
+
+	if err := conf.MustLoad(*configFile, &c); err != nil {
+		panic(err)
+	}
+
+	ctx := svc.NewServiceContext(c)
+	svc.Context = ctx
+
+	srv := server.NewMerchantsServer(ctx)
+
+	s := mrpc.MustNewServer(c.RpcServerConf, func(g *grpc.Server) {
+		pb.RegisterMerchantsServer(g, srv)
+	})
+
+	defer s.Stop()
+
+	s.Start()
 }

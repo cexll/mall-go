@@ -1,4 +1,4 @@
-FROM golang:1.19-alpine AS builder
+FROM golang:1.18-alpine AS builder
 
 LABEL stage=gobuilder
 
@@ -24,7 +24,7 @@ RUN apk update --no-cache && apk add --no-cache ca-certificates
 
 COPY --from=builder /usr/share/zoneinfo/Asia/Shanghai /usr/share/zoneinfo/Asia/Shanghai
 ENV TZ Asia/Shanghai
-ENV APP_DEBUG false
+
 WORKDIR /app
 
 ARG path=/app/user/cmd/api
@@ -33,4 +33,4 @@ COPY --from=builder /build/main /app/bin/main
 
 COPY ${path}/etc /app/etc
 
-CMD ["./bin/main", "api", "-f", "etc/config.yaml"]
+CMD ["./bin/main", "-f", "./etc/config.yaml"]

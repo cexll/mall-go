@@ -1,6 +1,10 @@
-Api:
-  Addr: :8080
-  Mode: release
+Name: community-api
+Addr: ":10151"
+Mode: release
 
 JwtAuth:
   Secret: mall-go
+
+CommunityRpcConf:
+  Target: "community-rpc:10152"
+  Timeout: 60
