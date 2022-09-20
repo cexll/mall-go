@@ -2,6 +2,9 @@ Name: balance-api
 Addr: ":10011"
 Mode: "release"
 
-
 JwtAuth:
   Secret: mall-go
+
+BalanceRpcConf:
+  Target: "balance-rpc:10012"
+  Timeout: 60

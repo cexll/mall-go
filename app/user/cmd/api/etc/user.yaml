@@ -3,10 +3,10 @@ Addr: ":10001"
 Mode: "release"
 
 UserRpcConf:
-  Target: "127.0.0.1:10002"
+  Target: "user-rpc:10002"
 
 BalanceRpcConf:
-  Target: "127.0.0.1:10012"
+  Target: "balance-rpc:10012"
 
 JwtAuth:
   Secret: mall-go

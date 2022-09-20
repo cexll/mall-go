@@ -3,7 +3,7 @@ Addr: ":10002"
 Mode: "release"
 
 RedisConf:
-  Addr: 127.0.0.1:6379
+  Addr: host.docker.internal:6379
   Password:
   DataBase: 1
   Timeout: 60
@@ -11,4 +11,4 @@ RedisConf:
 
 DbConf:
   # host.docker.internal
-  DSN: root:root@tcp(127.0.0.1:3306)/mall_go_user?charset=utf8&loc=Asia%2FShanghai&parseTime=true&timeout=10s
+  DSN: root:root@tcp(host.docker.internal:3306)/mall_go_user?charset=utf8&loc=Asia%2FShanghai&parseTime=true&timeout=10s

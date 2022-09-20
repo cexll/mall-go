@@ -6,9 +6,9 @@ JwtAuth:
   Secret: mall-go
 
 MerchantsRpcConf:
-  Target: "127.0.0.1:10092"
+  Target: "merchants-rpc:10092"
   Timeout: 60
 
 BalanceRpcConf:
-  Target: "127.0.0.1:10012"
+  Target: "balance-rpc:10012"
   Timeout: 60
