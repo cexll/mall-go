@@ -25,8 +25,8 @@ func main() {
 	}
 
 	ctx := svc.NewServiceContext(c)
-	svc.Context = ctx
 	srv := server.NewUserServer(ctx)
+	svc.Context = ctx
 
 	s := mrpc.MustNewServer(c.RpcServerConf, func(g *grpc.Server) {
 		pb.RegisterUserServer(g, srv)

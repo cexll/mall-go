@@ -1,6 +1,5 @@
 package svc
 
-import "C"
 import (
 	"github.com/go-redis/redis"
 	"github.com/mix-go/xsql"
