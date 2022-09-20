@@ -2,7 +2,6 @@ package handler
 
 import (
 	"context"
-	"mall-go/app/community/cmd/api/internal/handler/controllers"
 	"time"
 
 	"github.com/cloudwego/hertz/pkg/app"
@@ -24,9 +23,9 @@ func Load(router *server.Hertz) {
 	}))
 
 	router.GET("/", func(ctx context.Context, c *app.RequestContext) {
-		c.String(200, "Hello Mall-Go Community!")
+		c.String(200, "hello")
 	})
-	community := controllers.CommunityController{}
-	router.GET("/community/list", community.PushPost)
+	//community := controllers.CommunityController{}
+	//router.GET("/community/list", community.PushPost)
 	//router.Use(gin.Recovery(), middleware.CorsMiddleware(), middleware.AuthMiddleware())
 }
