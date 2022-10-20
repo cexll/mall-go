@@ -117,6 +117,16 @@ services:
     networks:
       - mall-net
 
+  # 消费队列
+  mqueue:
+    build:
+      context: .
+      args:
+        path: "/app/mqueue/cmd/job"
+    command: ./bin/main -f ./etc/config.yaml
+    networks:
+      - mall-net
+
 #  # 优惠券 API
 #  coupon-api:
 #    build:
