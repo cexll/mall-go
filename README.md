@@ -67,7 +67,9 @@ The front is slb followed by apisix
 # Development mode
 
 Use the microservice development pattern. api(http) --- rpc(grpc)
+
 rpc provides basic service implementation.
+
 api implements service aggregation business processing.
 
 
@@ -107,6 +109,7 @@ api implements service aggregation business processing.
 # Deployment
 
 develop use docker/docker-compose
+
 deployment use kubernetes
 
 
