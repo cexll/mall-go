@@ -1,17 +1,20 @@
 # mall-go
 
-从开始工作至今一直想写一款功能全面(市面上热门APP的主要功能)的一款开源项目 (挖个坑)
+[中文](./README-cn.md)
 
-既然是开源项目肯定所有的技术都得用最新的mixgo脚手架 微服务 容器部署 DTM分布式事务 等等 (不定时填坑
+Always wanted to complete a fully functional open source project
 
-# 使用技术
+Decided to develop a full-featured open source project in Go
+
+# Use of technology
 - gin、hertz
 - grpc、kitex
 - redis
 - mysql
 - mongodb
-- asynq(其他替代 go-queue)
-- es(其他替代 gofound， zinc)
+- asynq | go-queue
+- amqp
+- elasticsearch | gofound | zinc
 - prometheus
 - grafana
 - jaeger
@@ -20,87 +23,92 @@
 - wechat/alipay
 - zap
 - viper
-- docker/docker-compose/k8s
+- docker/docker-compose/kubernetes
 
-# 业务功能
-- [x] 会员
-  - TODO 充值
-- [x] 余额
-- [x] 多商户
-  - TODO 提现
-- [ ] 社区⌛
-- [ ] 分期
-- [ ] 众筹
-- [ ] 秒杀
-- [ ] 拼团
-- [ ] 抽奖
-- [ ] 配送
-- [ ] 生鲜
-- [ ] 优惠券
-- [ ] 二手交易
+# Service Functions
+- [x] members
+  - TODO recharge
+- [x] balance
+- [x] multi-merchant
+  - TODO withdraw
+- [ ] community⌛
+- [ ] installments
+- [ ] crowdfunding
+- [ ] spike
+- [ ] group buy
+- [ ] lottery
+- [ ] delivery
+- [ ] fresh
+- [ ] coupon
+- [ ] second-hand transaction ? trade old things
 - [ ] IM
-- [ ] 直播
-- [ ] 悬赏
+- [ ] live streaming
+- [ ] reward
 
 
 
-# 项目简介
+# Project Description
 
-项目基于mixgo搭建脚手架，可实现灵活拼装组件，现目前为客户端api接口，暂不会实现admin相关代码
+The project builds scaffolding based on mixgo, which can realize flexible assembly of components. It is currently the client API interface, and admin related codes will not be implemented for the time being.
 
-# 目录介绍
+# Catalog introduction
 
-- app:  所有业务代码包含api、rpc以及mq（消息队列、延迟队列、定时任务）
-- common: 通用组件 error、middleware、interceptor、tool、ctxdata等
-- data: 产生的数据
-- deployments: 项目系列配置文件
-- docs: 项目系列文档
-- pkg: 内部package
+- app:  Business code Include  api grpc mq job 
+- common: common components error、middleware、interceptor、tool、ctxdata
+- data: runtime data
+- deployments: Deploy related configuration files
+- docs: Project Series Documentation
+- pkg: internal package
 
-# 网关
+# Gateway
 
-apisix做外网关 网关前面是slb
+The front is slb followed by apisix
 
-# 开发模式
+# Development mode
 
-本项目使用的是微服务开发，api （http） + rpc（grpc） ， api充当聚合服务，复杂、涉及到其他业务调用的统一写在rpc中，如果一些不会被其他服务依赖使用的简单业务，可以直接写在api的logic中
+Use the microservice development pattern. api(http) --- rpc(grpc)
+rpc provides basic service implementation.
+api implements service aggregation business processing.
 
-# 日志
 
-暂时还在考虑是用logstash还是filebeat
+# Log
 
-# 监控
+- logstash 
+- filebeat
 
-监控采用prometheus
+# Monitor
 
-# 链路追踪
-jaeger
+- prometheus
 
-# 发布订阅
+# Track
 
-- kafka 
+- jaeger
+
+# pub/sub
+
+- kafka
 - mq
 
-# 消息队列、延迟队列、定时任务
+# Message queue、Delay queue、Timed task
 
-- 消息队列
+- message queue
   - asynq
   - amqp
-- 延迟队列
+- delay queue
   - asnyq
   - amqp
-- 定时任务
+- timed task
   - cron
 
-# 分布式事务
+# Distributed transaction
 
-分布式事务使用dtm
+- dtm
 
-# 部署
+# Deployment
 
-本项目开发环境推荐docker-compose，使用直链方式，放弃服务注册发现中间件（etcd、nacos、consul等）带来的麻烦
+develop use docker/docker-compose
+deployment use kubernetes
 
-测试、线上部署使用k8s（也不需要etcd、nacos、consul等）
 
 # License
 
