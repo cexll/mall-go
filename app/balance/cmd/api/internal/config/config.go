@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/go-ll/mrpc"
+	"github.com/mix-plus/go-mixplus/mrpc"
 	"mall-go/common/conf"
 )
 

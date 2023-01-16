@@ -2,14 +2,15 @@ package main
 
 import (
 	"flag"
-	"github.com/go-ll/mrpc"
-	"google.golang.org/grpc"
 	"mall-go/app/community/cmd/pb"
 	"mall-go/app/community/cmd/rpc/internal/config"
 	"mall-go/app/community/cmd/rpc/internal/server"
 	"mall-go/app/community/cmd/rpc/internal/svc"
 	conf "mall-go/common/conf"
 	_ "mall-go/pkg/di"
+
+	"github.com/mix-plus/go-mixplus/mrpc"
+	"google.golang.org/grpc"
 )
 
 var configFile = flag.String("f", "etc/community.yaml", "the config file")

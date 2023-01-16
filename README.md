@@ -113,9 +113,7 @@ develop use docker/docker-compose
 deployment use kubernetes
 
 
-# Doing
-
-- go-ll/mrpc migration mix-plus/mrpc
+# 
 
 # License
 

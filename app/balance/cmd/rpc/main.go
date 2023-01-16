@@ -2,13 +2,14 @@ package main
 
 import (
 	"flag"
-	"github.com/go-ll/mrpc"
-	"google.golang.org/grpc"
 	"mall-go/app/balance/cmd/pb"
 	"mall-go/app/balance/cmd/rpc/internal/config"
 	"mall-go/app/balance/cmd/rpc/internal/server"
 	"mall-go/app/balance/cmd/rpc/internal/svc"
 	conf "mall-go/common/conf"
+
+	"github.com/mix-plus/go-mixplus/mrpc"
+	"google.golang.org/grpc"
 
 	_ "mall-go/pkg/di"
 )
