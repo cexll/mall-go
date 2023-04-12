@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package lottery.api.v1;
+
+import "google/api/annotations.proto";
+import "validate/validate.proto";
+
+option go_package = "lottery.api.hello;v1";
+
+service Lottery {
+  rpc FindLottery(FindLotteryReq) returns(LotteryResp) {
+    option (google.api.http) = {
+      get: "/v1/lottery/find"
+    };
+  }
+  rpc CreateLottery(CreateLotteryReq) returns(LotteryResp) {
+    option (google.api.http) = {
+      post: "/v1/lottery/create"
+      body: "*"
+    };
+  }
+}
+
+
+message FindLotteryReq {
+  int64 id = 1 [(validate.rules).int64.gt = 0];
+}
+
+message LotteryResp {
+  int64 id = 1;
+  string name = 2;
+  string description = 3;
+}
+
+message CreateLotteryReq {
+  string name = 1 [(validate.rules).string.min_len = 1];
+  string description = 2 [(validate.rules).string.min_len = 1];
+}
