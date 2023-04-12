@@ -296,19 +296,19 @@ services:
 #    networks:
 #      - mall-net
 #
-#  # 抽奖 API
-#  lottery-api:
-#    build:
-#      context: .
-#      args:
-#        path: "/app/lottery/cmd/api"
-#    ports:
-#      - "10081:8080/tcp"
-#    expose:
-#      - 8080
-#    command: ./bin/main api -f etc/config.yaml
-#    networks:
-#      - mall-net
+  # 抽奖
+  lottery:
+    build:
+      context: app/lottery
+    ports:
+      - "10080:8080/tcp"
+      - "10081:8081/tcp"
+    expose:
+      - 8080
+      - 8081
+    command: ./service -f etc/config.yaml
+    networks:
+      - mall-net
 #
 #  # 抽奖 RPC
 #  lottery-rpc:

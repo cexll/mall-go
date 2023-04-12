@@ -9,13 +9,13 @@ RedisConf:
 
 RpcServerConf:
   Name: lottery-rpc
-  Addr: "localhost:18081"
+  Addr: "localhost:8081"
   Timeout: 60
   Mode: dev
 
 HttpServerConf:
   Name: lottery-http
-  Addr: "localhost:18080"
+  Addr: "localhost:8080"
   Timeout: 60
   Mode: dev
 

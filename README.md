@@ -115,12 +115,9 @@ deployment use kubernetes
 
 # TODO
 
-1. go engineering
-2. Add grpc checksum
-3. permission check
-4. grpc error handling
-5. Add build.buf
-6. introduce wire
+1. Add grpc checksum
+2. permission check
+3. grpc error handling
 
 
 # License
