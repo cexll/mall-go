@@ -18,10 +18,10 @@ import (
 // initApp init app application.
 func initApp(c *config.Config) (*server.AppServer, error) {
 	serviceContext := svc.NewServiceContext(c)
-	helloService := service.NewLotteryService(serviceContext)
-	httpServer := server.NewHttpServer(c, helloService)
+	lotteryService := service.NewLotteryService(serviceContext)
+	httpServer := server.NewHttpServer(c, lotteryService)
 	rpcServer := server.NewGrpcServer(c, serviceContext)
-	appServer, err := server.NewApp(serviceContext, helloService, httpServer, rpcServer)
+	appServer, err := server.NewApp(serviceContext, lotteryService, httpServer, rpcServer)
 	if err != nil {
 		return nil, err
 	}
