@@ -5,87 +5,86 @@ package mall.rpc.user;
 option go_package = "/;pb";
 
 service User {
-    // 注册
-    rpc Register(RegisterRequest) returns(RegisterResponse) {}
-    // 详情
-    rpc GetUser(GetUserRequest) returns(GetUserResponse) {}
-    // 编辑
-    rpc SetUser(SetUserRequest) returns(SetUserResponse) {}
-    // 注销
-    rpc Logout(LogOutRequest) returns(LogOutResponse) {}
-    // 登陆
-    rpc Login(LoginRequest) returns(LoginResponse) {}
+  // 注册
+  rpc Register(RegisterRequest) returns (RegisterResponse) {}
+  // 详情
+  rpc GetUser(GetUserRequest) returns (GetUserResponse) {}
+  // 编辑
+  rpc SetUser(SetUserRequest) returns (SetUserResponse) {}
+  // 注销
+  rpc Logout(LogOutRequest) returns (LogOutResponse) {}
+  // 登陆
+  rpc Login(LoginRequest) returns (LoginResponse) {}
 }
 
 // 注册用户请求结构
 message RegisterRequest {
-    string mobile = 1;
-    string nickname = 2;
-    string password = 3;
+  string mobile = 1;
+  string nickname = 2;
+  string password = 3;
 }
 
 // 注册用户返回结构
 message RegisterResponse {
-    int64 id = 1;
+  int64 id = 1;
 }
 
 // 获取用户详情请求结构
 message GetUserRequest {
-    int64 id = 1;
+  int64 id = 1;
 }
 
 // 获取用户详情返回结构
 message GetUserResponse {
-    int64 id = 1;
-    string nickname = 2;
-    string avatar_url = 3;
-    string mobile = 4;
-    string signature = 5;
-    int64 status = 6;
-    int64 is_delete = 7;
-    string created_at = 8;
-    string updated_at = 9;
+  int64 id = 1;
+  string nickname = 2;
+  string avatar_url = 3;
+  string mobile = 4;
+  string signature = 5;
+  int64 status = 6;
+  int64 is_delete = 7;
+  string created_at = 8;
+  string updated_at = 9;
 }
 
 // 编辑用户请求结构
 message SetUserRequest {
-    int64  id = 1;
-    string nickname = 2;
-    string avatar_url = 3;
-    string mobile = 4;
-    string signature = 5;
-    int64 status = 6;
-    int64 is_delete = 7;
-    string updated_at = 9;
-    string password = 10;
+  int64 id = 1;
+  string nickname = 2;
+  string avatar_url = 3;
+  string mobile = 4;
+  string signature = 5;
+  int64 status = 6;
+  int64 is_delete = 7;
+  string updated_at = 9;
+  string password = 10;
 }
 
 // 编辑用户返回结构
 message SetUserResponse {
-    bool status = 1;
+  bool status = 1;
 }
-
 
 // 注销用户请求结构
 message LogOutRequest {
-    int64 id = 1;
+  int64 id = 1;
 }
 
 // 注销用户返回结构
 message LogOutResponse {
-    bool status = 1;
+  bool status = 1;
 }
 
 // 登陆请求结构
 message LoginRequest {
-    string mobile = 1;
-    string password = 2;
+  string mobile = 1;
+  string password = 2;
 }
 
 // 登陆返回结构
 message LoginResponse {
-    int64 id = 1;
-    string nickname = 2;
-    string avatar_url = 3;
-    string mobile = 4;
+  int64 id = 1;
+  string nickname = 2;
+  string avatar_url = 3;
+  string mobile = 4;
 }

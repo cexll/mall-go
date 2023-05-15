@@ -2,9 +2,10 @@ package model
 
 import (
 	"fmt"
-	"mall-go/app/user/cmd/rpc/internal/svc"
 	"strings"
 	"time"
+
+	"mall-go/app/user/cmd/rpc/internal/svc"
 )
 
 // MallUser 用户表

@@ -2,10 +2,11 @@ package logic
 
 import (
 	"errors"
+	"time"
+
 	"mall-go/app/user/cmd/pb"
 	"mall-go/app/user/cmd/rpc/internal/model"
 	"mall-go/pkg/hash"
-	"time"
 )
 
 type UserLogic struct {

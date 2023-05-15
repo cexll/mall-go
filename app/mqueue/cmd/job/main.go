@@ -3,12 +3,13 @@ package main
 import (
 	"context"
 	"flag"
+	"os"
+
 	"github.com/zeromicro/go-zero/core/logx"
 	"mall-go/app/mqueue/cmd/job/internal/config"
 	"mall-go/app/mqueue/cmd/job/internal/logic"
 	"mall-go/app/mqueue/cmd/job/internal/svc"
 	"mall-go/common/conf"
-	"os"
 )
 
 var configFile = flag.String("f", "etc/mqueue.yaml", "Specify the config file")

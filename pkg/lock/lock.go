@@ -1,12 +1,13 @@
 package lock
 
 import (
+	"sync"
+	"time"
+
 	goredislib "github.com/go-redis/redis/v8"
 	"github.com/go-redsync/redsync/v4"
 	"github.com/go-redsync/redsync/v4/redis/goredis/v8"
 	"mall-go/common/conf"
-	"sync"
-	"time"
 )
 
 var (

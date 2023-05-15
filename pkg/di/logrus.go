@@ -2,14 +2,15 @@ package di
 
 import (
 	"fmt"
-	"github.com/mix-go/xcli"
-	"github.com/mix-go/xdi"
-	"github.com/sirupsen/logrus"
-	"gopkg.in/natefinch/lumberjack.v2"
 	"io"
 	"os"
 	"path/filepath"
 	"runtime"
+
+	"github.com/mix-go/xcli"
+	"github.com/mix-go/xdi"
+	"github.com/sirupsen/logrus"
+	"gopkg.in/natefinch/lumberjack.v2"
 )
 
 func init() {

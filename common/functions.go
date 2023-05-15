@@ -2,9 +2,10 @@ package common
 
 import (
 	"errors"
-	"github.com/gin-gonic/gin"
 	"os"
 	"strconv"
+
+	"github.com/gin-gonic/gin"
 )
 
 func GetUserId(c *gin.Context) (int64, error) {

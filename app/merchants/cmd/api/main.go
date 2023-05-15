@@ -4,6 +4,12 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"os"
+	"os/signal"
+	"strings"
+	"syscall"
+	"time"
+
 	"github.com/gin-gonic/gin"
 	"mall-go/app/merchants/cmd/api/internal/config"
 	"mall-go/app/merchants/cmd/api/internal/handler"
@@ -11,11 +17,6 @@ import (
 	conf "mall-go/common/conf"
 	"mall-go/pkg/di"
 	_ "mall-go/pkg/di"
-	"os"
-	"os/signal"
-	"strings"
-	"syscall"
-	"time"
 )
 
 var configFile = flag.String("f", "etc/balance.yaml", "the config file")

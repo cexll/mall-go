@@ -1,12 +1,11 @@
 package svc
 
 import (
+	"github.com/mix-plus/go-mixplus/mrpc"
 	balancepb "mall-go/app/balance/cmd/pb"
 	"mall-go/app/user/cmd/api/internal/config"
 	"mall-go/app/user/cmd/pb"
 	"mall-go/pkg/jwtx"
-
-	"github.com/mix-plus/go-mixplus/mrpc"
 )
 
 var Context *ServiceContext

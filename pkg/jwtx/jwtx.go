@@ -2,11 +2,11 @@ package jwtx
 
 import (
 	"fmt"
-	"mall-go/common/conf"
 	"strconv"
 	"time"
 
 	"github.com/golang-jwt/jwt/v4"
+	"mall-go/common/conf"
 )
 
 type Jwt struct {
@@ -49,8 +49,7 @@ func (t *Jwt) CheckJwt(tokenString string) bool {
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 		fmt.Println(claims["foo"], claims["nbf"])
 		return true
-	} else {
-		fmt.Println(err)
-		return false
 	}
+	fmt.Println(err)
+	return false
 }

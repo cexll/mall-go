@@ -2,13 +2,14 @@ package di
 
 import (
 	"fmt"
+	"os"
+	"time"
+
 	"github.com/mix-go/xcli"
 	"github.com/mix-go/xdi"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
-	"os"
-	"time"
 )
 
 func init() {

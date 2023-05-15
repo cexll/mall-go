@@ -1,10 +1,11 @@
 package pkg
 
 import (
+	"time"
+
 	"github.com/go-session/redis"
 	"github.com/go-session/session"
 	"mall-go/common/conf"
-	"time"
 )
 
 func NewSession(c conf.RedisConf) *session.Manager {

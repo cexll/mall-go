@@ -2,9 +2,10 @@ package model
 
 import (
 	"fmt"
-	"mall-go/app/balance/cmd/rpc/internal/svc"
 	"strings"
 	"time"
+
+	"mall-go/app/balance/cmd/rpc/internal/svc"
 )
 
 // MallBalance 余额表

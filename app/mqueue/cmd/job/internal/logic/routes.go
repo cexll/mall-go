@@ -2,9 +2,9 @@ package logic
 
 import (
 	"context"
-	"mall-go/app/mqueue/cmd/job/internal/svc"
 
 	"github.com/hibiken/asynq"
+	"mall-go/app/mqueue/cmd/job/internal/svc"
 )
 
 type CronJob struct {

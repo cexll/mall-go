@@ -1,16 +1,16 @@
 package controllers
 
 import (
+	"net/http"
+	"strconv"
+
+	"github.com/gin-gonic/gin"
 	balancepb "mall-go/app/balance/cmd/pb"
 	"mall-go/app/user/cmd/api/internal/logic"
 	"mall-go/app/user/cmd/pb"
 	"mall-go/common"
 	"mall-go/common/response"
 	"mall-go/pkg/di"
-	"net/http"
-	"strconv"
-
-	"github.com/gin-gonic/gin"
 )
 
 type UserController struct {

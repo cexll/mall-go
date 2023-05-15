@@ -2,9 +2,9 @@ package svc
 
 import (
 	"fmt"
-	"mall-go/app/mqueue/cmd/job/internal/config"
 
 	"github.com/hibiken/asynq"
+	"mall-go/app/mqueue/cmd/job/internal/config"
 )
 
 func newAsynqServer(c config.Config) *asynq.Server {

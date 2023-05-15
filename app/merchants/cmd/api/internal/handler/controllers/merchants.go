@@ -1,13 +1,14 @@
 package controllers
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	balancepb "mall-go/app/balance/cmd/pb"
 	"mall-go/app/merchants/cmd/api/internal/logic"
 	"mall-go/app/merchants/cmd/pb"
 	"mall-go/common"
 	"mall-go/common/response"
-	"net/http"
 )
 
 type MerchantsController struct {

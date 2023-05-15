@@ -1,9 +1,8 @@
 package config
 
 import (
-	"mall-go/common/conf"
-
 	"github.com/mix-plus/go-mixplus/mrpc"
+	"mall-go/common/conf"
 )
 
 type Config struct {

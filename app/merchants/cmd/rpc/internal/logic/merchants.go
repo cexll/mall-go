@@ -2,11 +2,12 @@ package logic
 
 import (
 	"errors"
+	"time"
+
 	"gorm.io/gorm"
 	"mall-go/app/merchants/cmd/pb"
 	"mall-go/app/merchants/cmd/rpc/internal/model"
 	"mall-go/app/merchants/cmd/rpc/internal/svc"
-	"time"
 )
 
 type MerchantsLogic struct {

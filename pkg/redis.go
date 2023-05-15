@@ -1,9 +1,10 @@
 package pkg
 
 import (
+	"time"
+
 	"github.com/go-redis/redis"
 	"mall-go/common/conf"
-	"time"
 )
 
 func NewRedis(c conf.RedisConf) (client *redis.Client) {

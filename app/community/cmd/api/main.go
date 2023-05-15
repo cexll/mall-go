@@ -4,6 +4,8 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"time"
+
 	"github.com/bytedance/gopkg/util/logger"
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
@@ -12,7 +14,6 @@ import (
 	"mall-go/app/community/cmd/api/internal/svc"
 	conf "mall-go/common/conf"
 	_ "mall-go/pkg/di"
-	"time"
 )
 
 var configFile = flag.String("f", "etc/community.yaml", "the config file")

@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+
 	"mall-go/app/merchants/cmd/pb"
 	"mall-go/app/merchants/cmd/rpc/internal/logic"
 	"mall-go/app/merchants/cmd/rpc/internal/svc"

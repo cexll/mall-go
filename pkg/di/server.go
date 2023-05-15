@@ -1,8 +1,9 @@
 package di
 
 import (
-	"github.com/mix-go/xdi"
 	"net/http"
+
+	"github.com/mix-go/xdi"
 )
 
 func init() {

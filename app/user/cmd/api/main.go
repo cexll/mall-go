@@ -4,18 +4,18 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"github.com/gin-gonic/gin"
-	"mall-go/app/user/cmd/api/internal/config"
-	"mall-go/app/user/cmd/api/internal/handler"
-	"mall-go/app/user/cmd/api/internal/svc"
-	"mall-go/pkg/di"
 	"os"
 	"os/signal"
 	"strings"
 	"syscall"
 	"time"
 
+	"github.com/gin-gonic/gin"
+	"mall-go/app/user/cmd/api/internal/config"
+	"mall-go/app/user/cmd/api/internal/handler"
+	"mall-go/app/user/cmd/api/internal/svc"
 	conf "mall-go/common/conf"
+	"mall-go/pkg/di"
 	_ "mall-go/pkg/di"
 )
 
