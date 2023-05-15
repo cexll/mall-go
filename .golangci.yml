@@ -1,0 +1,58 @@
+linters-settings:
+  golint:
+    min-confidence: 0.9
+  gci:
+    max-linelength: 120
+
+linters:
+  enable:
+    - gci
+    - golint
+  disable-all: true
+
+rules:
+  # Rule 1: 接口名称使用大驼峰
+  - id: interface-names
+    pattern: '^[A-Z][a-zA-Z0-9]*$'
+    messages:
+      - "Interface names should use UpperCamelCase."
+
+  # Rule 2: 方法名 public使用大驼峰 private使用小驼峰
+  - id: method-names
+    pattern: '(^[A-Z][a-zA-Z0-9]*$)|(^[a-z][a-zA-Z0-9]*$)'
+    messages:
+      - "Public method names should use UpperCamelCase, private method names should use lowerCamelCase."
+
+  # Rule 3: 结构体命名 model使用大驼峰 request使用大驼峰 reply使用大驼峰
+  - id: struct-names
+    pattern: '(Model$)|(Request$)|(Reply$)'
+    messages:
+      - "Struct names should use UpperCamelCase. Models should end with 'Model', requests should end with 'Request', and replies should end with 'Reply'."
+
+  # Rule 4: 变量名称 使用小驼峰
+  - id: variable-names
+    pattern: '^[a-z][a-zA-Z0-9]*$'
+    messages:
+      - "Variable names should use lowerCamelCase."
+
+  # Rule 5: 常量名称 全大写加下划线分割单词
+  - id: constant-names
+    pattern: '^[A-Z][_A-Z0-9]*$'
+    messages:
+      - "Constant names should be in uppercase with underscore-separated words."
+
+  # Rule 6: slice 使用 var a []string 不用 a := []string{}
+  - id: slice-declaration
+    pattern: '.*:=\s*\[\]([a-zA-Z]+)\{\}'
+    messages:
+      - "Use 'var a []Type' instead of 'a := []Type{}' for slice declaration."
+
+  # Rule 7: map初始化方式 m := make(map[string]interface{})
+  - id: map-initialization
+    pattern: '.*:=\s*make\(map\[([a-zA-Z]+)\]([a-zA-Z]+)\)'
+    messages:
+      - "Use 'm := make(map[KeyType]ValueType)' for map initialization."
+
+  # Exclude vendor directory from linting
+  - exclude:
+      - "**/vendor/**"
